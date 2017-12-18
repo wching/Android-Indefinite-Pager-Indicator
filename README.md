@@ -2,7 +2,8 @@
 
 A lightweight, plug-and-play indefinite pager indicator for RecyclerViews &amp; ViewPagers.
 
-<img src="https://i.imgur.com/14cnD9w.gif"/>
+![GIF Preview](https://github.com/rbro112/Android-Indefinite-Pager-Indicator/blob/master/preview.gif)
+
 
 # Usage
 
