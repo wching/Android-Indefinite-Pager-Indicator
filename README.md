@@ -1,1 +1,1 @@
-# Android-Infinite-Page-Indicator
+# Android-Indefinite-Page-Indicator
