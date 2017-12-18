@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="default_dot_color">#e8e8e8</color>
+    <color name="default_selected_dot_color">#ffffff</color>
+    <declare-styleable name="IndefinitePagerIndicator"><attr format="integer" name="dotCount"/><attr format="integer" name="fadingDotCount"/><attr format="dimension" name="dotRadius"/><attr format="dimension" name="selectedDotRadius"/><attr format="color" name="dotColor"/><attr format="color" name="selectedDotColor"/><attr format="dimension" name="dotSeparation"/></declare-styleable>
+    <string name="app_name">InfinitePagerIndicator</string>
+</resources>

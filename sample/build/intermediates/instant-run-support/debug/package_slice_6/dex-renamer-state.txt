@@ -1,0 +1,4 @@
+#Mon Dec 18 11:27:17 EST 2017
+base.0=/Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/build/intermediates/transforms/dexMerger/debug/7
+path.0=classes.dex
+renamed.0=classes.dex

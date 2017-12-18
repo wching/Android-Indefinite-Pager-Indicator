@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Indefinite Pager Indicator Sample</string>
+
+    <string name="main_activity_title">Indefinite Pager\nIndicator</string>
+    <string name="view_pager">View Pager</string>
+    <string name="recyclerview">RecylerView</string>
+
+    <string name="pager_number_picker_dialog_title">Number of Pages in RecyclerView/View Pager</string>
+    <string name="pager_number_picker_dialog_positive_text">Save</string>
+    <string name="pager_number_picker_dialog_negative_text">Cancel</string>
+
+    <string name="tanbar">Tanbar</string>
+    <string name="tanbar_location">Australia</string>
+    <string name="maasvlakte">Maasvlakte Rotterdam</string>
+    <string name="maasvlakte_location">The Netherlands</string>
+    <string name="baja">Baja California Sur</string>
+    <string name="baja_location">Mexico</string>
+    <string name="hormozgan">Hormozgan</string>
+    <string name="hormozgan_location">Iran</string>
+    <string name="puerto_santa_maria">El Puerto de Santa María</string>
+    <string name="puerto_santa_maria_location">Spain</string>
+    <string name="belo">Belo Horizonte</string>
+    <string name="belo_location">Brazil</string>
+    <string name="beas">Beas</string>
+    <string name="beas_location">Spain</string>
+    <string name="nazca">Nazca Province</string>
+    <string name="nazca_location">Peru</string>
+    <string name="tanganyika">Tanganyika</string>
+    <string name="tanganyika_location">Democratic Republic of the Congo</string>
+    <string name="corpen">Corpen Aike Department</string>
+    <string name="corpen_location">Argentina</string>
+    <string name="gallina">Gallina</string>
+    <string name="gallina_location">United States</string>
+    <string name="karas">Karas</string>
+    <string name="karas_location">Namibia</string>
+    <string name="leidschendam">Leidschendam</string>
+    <string name="leidschendam_location">The Netherlands</string>
+    <string name="robinvale">Robinvale Irrigation District Section C</string>
+    <string name="robinvale_location">Australia</string>
+    <string name="abu_dhabi">Abu Dhabi</string>
+    <string name="abu_dhabi_location">United Arab Emirates</string>
+    <string name="plainfield">Plainfield</string>
+    <string name="plainfield_location">United States</string>
+    <string name="atar">Atar</string>
+    <string name="atar_location">Mauritania</string>
+    <string name="cape_barren_island">Cape Barren Island</string>
+    <string name="cape_barren_island_location">Australia</string>
+    <string name="creswell">Creswell</string>
+    <string name="creswell_location">Australia</string>
+    <string name="badhan">Badhan</string>
+    <string name="badhan_location">Somalia</string>
+
+    <string name="see_original">See Original</string>
+    <string name="choose_browser">Choose Browser</string>
+</resources>

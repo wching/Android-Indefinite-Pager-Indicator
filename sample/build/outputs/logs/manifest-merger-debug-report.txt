@@ -1,0 +1,176 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:2:1-22:12
+INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:2:1-22:12
+INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:2:1-22:12
+INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:2:1-22:12
+MERGED from [:indefinitepagerindicator] /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/indefinitepagerindicator/build/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:design:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/372e4db99edb4519e8d70bfd883f69f5/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/dae4242b1b4abaab930ee4f2df6db65b/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/6dd1856dcffab339366a39a18edc976e/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:cardview-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/cardview-v7-26.1.0.aar/832bcea32078de36fcb327a09bafe305/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/f9c3cbda74f4c257107e45d4aa516fdb/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/494b85b04457097d6d9cff3b33f42920/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:transition:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/21d6dbf49a5dd7380809fe01238c7499/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/beb7216e3fa735187a17a15d7f437784/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/db8e41711249d5d462ad38a3596086cb/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/96f15f5b44d84f4078bd2d2b08d38b52/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-media-compat:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/34b260943dbccd64881b10d2254dec41/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/412063ff687b966f7e31bf8207a1ed9f/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/97530c7a0e93374d07dcb97eda54e43d/AndroidManifest.xml:17:1-31:12
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/9e0951199f273de061eb1b58f67fcb72/AndroidManifest.xml:17:1-30:12
+INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:2:1-22:12
+INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:2:1-22:12
+INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:2:1-22:12
+	package
+		ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:3:5-57
+		INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml
+		INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml
+		ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:2:1-22:12
+		INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml
+		ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:2:1-22:12
+		INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:2:11-69
+application
+ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:5:5-20:19
+MERGED from [com.android.support:design:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/372e4db99edb4519e8d70bfd883f69f5/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:design:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/372e4db99edb4519e8d70bfd883f69f5/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/dae4242b1b4abaab930ee4f2df6db65b/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/dae4242b1b4abaab930ee4f2df6db65b/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/6dd1856dcffab339366a39a18edc976e/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/6dd1856dcffab339366a39a18edc976e/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:cardview-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/cardview-v7-26.1.0.aar/832bcea32078de36fcb327a09bafe305/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:cardview-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/cardview-v7-26.1.0.aar/832bcea32078de36fcb327a09bafe305/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/f9c3cbda74f4c257107e45d4aa516fdb/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/f9c3cbda74f4c257107e45d4aa516fdb/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/494b85b04457097d6d9cff3b33f42920/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/494b85b04457097d6d9cff3b33f42920/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:transition:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/21d6dbf49a5dd7380809fe01238c7499/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:transition:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/21d6dbf49a5dd7380809fe01238c7499/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-v4:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/beb7216e3fa735187a17a15d7f437784/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/beb7216e3fa735187a17a15d7f437784/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/db8e41711249d5d462ad38a3596086cb/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/db8e41711249d5d462ad38a3596086cb/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/96f15f5b44d84f4078bd2d2b08d38b52/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/96f15f5b44d84f4078bd2d2b08d38b52/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/34b260943dbccd64881b10d2254dec41/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/34b260943dbccd64881b10d2254dec41/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/412063ff687b966f7e31bf8207a1ed9f/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/412063ff687b966f7e31bf8207a1ed9f/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/97530c7a0e93374d07dcb97eda54e43d/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/97530c7a0e93374d07dcb97eda54e43d/AndroidManifest.xml:25:5-29:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/9e0951199f273de061eb1b58f67fcb72/AndroidManifest.xml:24:5-28:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/9e0951199f273de061eb1b58f67fcb72/AndroidManifest.xml:24:5-28:19
+	android:supportsRtl
+		ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:10:9-35
+	android:label
+		ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:8:9-41
+	android:roundIcon
+		ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:9:9-54
+	android:icon
+		ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:7:9-43
+	android:allowBackup
+		ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:6:9-35
+activity#com.rbrooks.indefinitepagerindicatorsample.MainActivity
+ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:12:9-19:20
+	android:theme
+		ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:14:13-60
+	android:name
+		ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:13:13-83
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:15:13-18:29
+action#android.intent.action.MAIN
+ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:16:17-69
+	android:name
+		ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:16:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:17:17-77
+	android:name
+		ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml:17:27-74
+uses-sdk
+INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml
+INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml
+MERGED from [:indefinitepagerindicator] /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/indefinitepagerindicator/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:indefinitepagerindicator] /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/indefinitepagerindicator/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:design:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/372e4db99edb4519e8d70bfd883f69f5/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:design:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/372e4db99edb4519e8d70bfd883f69f5/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/dae4242b1b4abaab930ee4f2df6db65b/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/dae4242b1b4abaab930ee4f2df6db65b/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/6dd1856dcffab339366a39a18edc976e/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/6dd1856dcffab339366a39a18edc976e/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/cardview-v7-26.1.0.aar/832bcea32078de36fcb327a09bafe305/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/cardview-v7-26.1.0.aar/832bcea32078de36fcb327a09bafe305/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/f9c3cbda74f4c257107e45d4aa516fdb/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/f9c3cbda74f4c257107e45d4aa516fdb/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/494b85b04457097d6d9cff3b33f42920/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/494b85b04457097d6d9cff3b33f42920/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/21d6dbf49a5dd7380809fe01238c7499/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/21d6dbf49a5dd7380809fe01238c7499/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/beb7216e3fa735187a17a15d7f437784/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/beb7216e3fa735187a17a15d7f437784/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/db8e41711249d5d462ad38a3596086cb/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/db8e41711249d5d462ad38a3596086cb/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-ui:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/96f15f5b44d84f4078bd2d2b08d38b52/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/96f15f5b44d84f4078bd2d2b08d38b52/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-media-compat:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/34b260943dbccd64881b10d2254dec41/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/34b260943dbccd64881b10d2254dec41/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-utils:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/412063ff687b966f7e31bf8207a1ed9f/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/412063ff687b966f7e31bf8207a1ed9f/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/97530c7a0e93374d07dcb97eda54e43d/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/97530c7a0e93374d07dcb97eda54e43d/AndroidManifest.xml:21:5-23:58
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/9e0951199f273de061eb1b58f67fcb72/AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/9e0951199f273de061eb1b58f67fcb72/AndroidManifest.xml:20:5-22:41
+INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml
+INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/372e4db99edb4519e8d70bfd883f69f5/AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml
+		ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml
+		INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml
+		ADDED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml
+		INJECTED from /Users/ryan_brooks/Documents/apps/IndefinitePageIndicator/sample/src/main/AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:design:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/372e4db99edb4519e8d70bfd883f69f5/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/dae4242b1b4abaab930ee4f2df6db65b/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/dae4242b1b4abaab930ee4f2df6db65b/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/6dd1856dcffab339366a39a18edc976e/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/6dd1856dcffab339366a39a18edc976e/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:cardview-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/cardview-v7-26.1.0.aar/832bcea32078de36fcb327a09bafe305/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:cardview-v7:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/cardview-v7-26.1.0.aar/832bcea32078de36fcb327a09bafe305/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/f9c3cbda74f4c257107e45d4aa516fdb/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/f9c3cbda74f4c257107e45d4aa516fdb/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/494b85b04457097d6d9cff3b33f42920/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/494b85b04457097d6d9cff3b33f42920/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:transition:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/21d6dbf49a5dd7380809fe01238c7499/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:transition:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/21d6dbf49a5dd7380809fe01238c7499/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-v4:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/beb7216e3fa735187a17a15d7f437784/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-v4:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/beb7216e3fa735187a17a15d7f437784/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/db8e41711249d5d462ad38a3596086cb/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/db8e41711249d5d462ad38a3596086cb/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/96f15f5b44d84f4078bd2d2b08d38b52/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/96f15f5b44d84f4078bd2d2b08d38b52/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/34b260943dbccd64881b10d2254dec41/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/34b260943dbccd64881b10d2254dec41/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/412063ff687b966f7e31bf8207a1ed9f/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/412063ff687b966f7e31bf8207a1ed9f/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/97530c7a0e93374d07dcb97eda54e43d/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/97530c7a0e93374d07dcb97eda54e43d/AndroidManifest.xml:26:9-28:38
+	android:value
+		ADDED from [com.android.support:design:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/372e4db99edb4519e8d70bfd883f69f5/AndroidManifest.xml:28:13-35
+	android:name
+		ADDED from [com.android.support:design:26.1.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/372e4db99edb4519e8d70bfd883f69f5/AndroidManifest.xml:27:13-51
+meta-data#android.arch.lifecycle.VERSION
+ADDED from [android.arch.lifecycle:runtime:1.0.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/9e0951199f273de061eb1b58f67fcb72/AndroidManifest.xml:25:9-27:47
+	android:value
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/9e0951199f273de061eb1b58f67fcb72/AndroidManifest.xml:27:13-44
+	android:name
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] /Users/ryan_brooks/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/9e0951199f273de061eb1b58f67fcb72/AndroidManifest.xml:26:13-58
