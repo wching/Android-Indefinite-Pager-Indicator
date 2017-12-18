@@ -2,7 +2,7 @@
 
 A lightweight, plug-and-play indefinite pager indicator for RecyclerViews &amp; ViewPagers.
 
-<img src="https://i.imgur.com/GKdyVHn.gifv" width="300px" />
+<img src="https://i.imgur.com/GKdyVHnm.gif" width="300px" />
 
 # Usage
 
