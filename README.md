@@ -6,15 +6,19 @@ A lightweight, plug-and-play indefinite pager indicator for RecyclerViews &amp; 
 
 # Usage
 
-To start, simply add the 
+ [ ![Download](https://api.bintray.com/packages/rbro112/maven/IndefinitePagerIndicator/images/download.svg) ](https://bintray.com/rbro112/maven/IndefinitePagerIndicator/_latestVersion)
 
-Gradle instructions
+To use the IndefinitePagerIndicator, simply add the gradle dependency to your module's `build.gradle` file:
+
+```groovy
+compile 'com.ryanjeffreybrooks:indefinite-pager-indicator:1.0.0'
+```
 
 ## Getting Started
 
-### RecyclerViews
+### RecyclerView
 
-### ViewPagers
+### ViewPager
 
 ## Customizing
 
@@ -23,7 +27,6 @@ Gradle instructions
 Actively working on these. If you would like to help, submit a PR!
 
 "Instagram" style -- image
-
 
 
 ## Notes
