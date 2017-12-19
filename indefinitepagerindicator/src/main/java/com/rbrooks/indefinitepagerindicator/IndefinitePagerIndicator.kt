@@ -84,7 +84,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
     /**
      * Iterate over the total pager item count and draw every dot based on position.
      *
-     * Helper methods - {@link #getDotXCoordinate(Int)} & {@link #getRadius(Int)}
+     * Helper methods - getDotXCoordinate(Int) & getRadius(Int)
      * will return values outside the calculated width or with an invalid radius
      * if the dot is not to be drawn.
      *
@@ -101,7 +101,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
 
     /**
      * Set the dimensions of the IndefinitePagerIndicator.
-     * Width is calculated below with {@link #getCalculatedWidth()}.
+     * Width is calculated below with getCalculatedWidth().
      * Height is simply the diameter of the largest circle.
      *
      * TODO: Add support for padding.
@@ -280,7 +280,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
          * Returns the currently most visible viewholder view in the Recyclerview.
          *
          * The most visible view is determined based on percentage of the view visible. This is
-         * calculated below in {@link #calculatePercentVisible()}.
+         * calculated below in calculatePercentVisible().
          */
         private fun getMostVisibleChild(): View? {
             var mostVisibleChild: View? = null
