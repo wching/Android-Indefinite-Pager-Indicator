@@ -8,14 +8,14 @@ ext {
 
     publishedGroupId = 'com.ryanjeffreybrooks'
     libraryName = 'IndefinitePagerIndicator'
-    artifact = 'indefinite-pager-indicator'
+    artifact = 'indefinitepagerindicator'
 
     libraryDescription = 'A lightweight, plug-and-play indefinite pager indicator for RecyclerViews & ViewPagers.'
 
     siteUrl = 'https://github.com/rbro112/Android-Indefinite-Pager-Indicator'
     gitUrl = 'https://github.com/rbro112/Android-Indefinite-Pager-Indicator.git'
 
-    libraryVersion = '1.0.0'
+    libraryVersion = '1.0.1'
 
     developerId = 'rbro112'
     developerName = 'Ryan Brooks'
