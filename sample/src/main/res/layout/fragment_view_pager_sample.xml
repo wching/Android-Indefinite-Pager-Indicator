@@ -8,7 +8,7 @@
         android:id="@+id/viewpager_pager_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
         android:layout_margin="24dp"
         indefinite_pager_indicator:dotColor="@color/colorPrimaryDark"
         indefinite_pager_indicator:selectedDotColor="@color/colorPrimary" />
@@ -20,26 +20,30 @@
         android:layout_above="@+id/navigation_buttons_layout"
         android:layout_below="@+id/viewpager_pager_indicator" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/navigation_buttons_layout"
-        android:layout_width="wrap_content"
+        style="?attr/buttonBarStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/viewpager"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:elevation="2dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/viewpager_previous_button"
+            style="?attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
             android:text="@string/previous" />
 
         <Button
             android:id="@+id/viewpager_next_button"
+            style="?attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_alignParentRight="true"
             android:text="@string/next" />
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

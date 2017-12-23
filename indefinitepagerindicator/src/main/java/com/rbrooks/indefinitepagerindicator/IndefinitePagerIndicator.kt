@@ -232,6 +232,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
     }
 
     override fun onPageSelected(position: Int) {
+        intermediateSelectedItemPosition = selectedItemPosition
         selectedItemPosition = position
         invalidate()
     }
