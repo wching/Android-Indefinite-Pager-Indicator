@@ -60,7 +60,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
     /**
      * The scroll percentage of the viewpager or recyclerview.
      * Used for moving the dots/scaling the fading dots.
-      */
+     */
     private var offsetPercent: Float = 0f
 
     init {
@@ -230,7 +230,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
         offsetPercent = positionOffset * -1
         invalidate()
     }
-
+    
     override fun onPageSelected(position: Int) {
         intermediateSelectedItemPosition = selectedItemPosition
         selectedItemPosition = position

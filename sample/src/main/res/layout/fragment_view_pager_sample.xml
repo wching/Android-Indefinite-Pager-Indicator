@@ -27,19 +27,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
-        android:elevation="2dp"
+        android:elevation="4dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/viewpager_previous_button"
-            style="?attr/buttonBarButtonStyle"
+            style="@style/PrimaryFlatButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/previous" />
 
         <Button
             android:id="@+id/viewpager_next_button"
-            style="?attr/buttonBarButtonStyle"
+            style="@style/PrimaryFlatButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
