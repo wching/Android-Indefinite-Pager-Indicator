@@ -18,9 +18,33 @@ compile 'com.ryanjeffreybrooks:indefinitepagerindicator:1.0.1'
 
 ### RecyclerView
 
+1. Add the IndefinitePagerIndicator view to your XML file
+// TODO: EXAMPLE CODE
+
+2. Find the view in your activity, fragment, etc.
+// TODO: EXAMPLE CODE
+
+3. Attach the RecyclerView to your IndefinitePagerIndicator
+// TODO: EXAMPLE CODE
+
+That's it! The IndefinitePagerIndicator will handle updating as your RecyclerView does.
+
 ### ViewPager
 
+
 ## Customizing
+
+Customizable features:
+
+
+// TODO: TABLE WITH EXPLANATION OF WHAT EACH ONE IS AND WHAT TYPE
+
+1. Dot radius
+2. Selected dot radius
+3. Dot color
+4. Selected dot color
+5. Dot separation distance (edge to edge)
+6. Dot count
 
 ## TODO:
 
