@@ -15,11 +15,11 @@ ext {
     siteUrl = 'https://github.com/rbro112/Android-Indefinite-Pager-Indicator'
     gitUrl = 'https://github.com/rbro112/Android-Indefinite-Pager-Indicator.git'
 
-    libraryVersion = '1.0.1'
+    libraryVersion = '1.0.2'
 
     developerId = 'rbro112'
     developerName = 'Ryan Brooks'
-    developerEmail = 'ryanjeffrey.brooks112@yahoo.com'
+    developerEmail = 'ryanjeffrey.brooks112@gmail.com'
 
     licenseName = 'MIT License'
     licenseUrl = 'https://github.com/rbro112/Android-Indefinite-Pager-Indicator/blob/master/LICENSE.md'

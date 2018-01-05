@@ -11,7 +11,7 @@ A lightweight, plug-and-play indefinite pager indicator for RecyclerViews &amp; 
 To use the IndefinitePagerIndicator, simply add the gradle dependency to your module's `build.gradle` file:
 
 ```groovy
-compile 'com.ryanjeffreybrooks:indefinitepagerindicator:1.0.1'
+compile 'com.ryanjeffreybrooks:indefinitepagerindicator:1.0.2'
 ```
 
 ## Getting Started
