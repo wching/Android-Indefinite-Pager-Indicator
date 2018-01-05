@@ -65,7 +65,7 @@ That's it! The IndefinitePagerIndicator will handle updating as your RecyclerVie
 findViewById(R.id.viewpager_pager_indicator);
 ```
 
-3. Attach the RecyclerView to your IndefinitePagerIndicator
+3. Attach the ViewPager to your IndefinitePagerIndicator
 
 ```java
 indefinitePagerIndicator.attachToViewPager(viewPager);
