@@ -52,4 +52,7 @@
 
     <string name="see_original">See Original</string>
     <string name="choose_browser">Choose Browser</string>
+
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
 </resources>
