@@ -14,7 +14,7 @@ To use the IndefinitePagerIndicator, simply add the gradle dependency to your mo
 compile 'com.ryanjeffreybrooks:indefinitepagerindicator:1.0.3'
 ```
 
-Min SDK supported is version 16 - JellyBean.
+Min SDK supported is version 16 - Jelly Bean.
 
 ## Getting Started
 
