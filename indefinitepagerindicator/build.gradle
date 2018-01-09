@@ -15,7 +15,7 @@ ext {
     siteUrl = 'https://github.com/rbro112/Android-Indefinite-Pager-Indicator'
     gitUrl = 'https://github.com/rbro112/Android-Indefinite-Pager-Indicator.git'
 
-    libraryVersion = '1.0.2'
+    libraryVersion = '1.0.3'
 
     developerId = 'rbro112'
     developerName = 'Ryan Brooks'
@@ -30,7 +30,7 @@ android {
     compileSdkVersion 26
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
