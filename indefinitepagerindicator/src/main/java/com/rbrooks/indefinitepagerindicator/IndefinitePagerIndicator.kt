@@ -230,7 +230,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
         offsetPercent = positionOffset * -1
         invalidate()
     }
-    
+
     override fun onPageSelected(position: Int) {
         intermediateSelectedItemPosition = selectedItemPosition
         selectedItemPosition = position
@@ -264,8 +264,11 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
         override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
 
             val view = getMostVisibleChild()
-            setIntermediateSelectedItemPosition(view)
-            offsetPercent = view!!.left.toFloat() / view.measuredWidth
+
+            if (view != null) {
+                setIntermediateSelectedItemPosition(view)
+                offsetPercent = view.left.toFloat() / view.measuredWidth
+            }
 
             val layoutManager = recyclerView?.layoutManager as LinearLayoutManager
             val visibleItemPosition = if (dx >= 0) layoutManager.findLastVisibleItemPosition() else layoutManager.findFirstVisibleItemPosition()

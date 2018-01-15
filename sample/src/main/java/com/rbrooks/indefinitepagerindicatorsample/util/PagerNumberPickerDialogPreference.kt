@@ -16,7 +16,7 @@ class PagerNumberPickerDialogPreference : DialogFragment() {
     companion object {
         val KEY_NUM_PAGES = "num_pages"
 
-        val MIN_PAGES = 1
+        val MIN_PAGES = 0
         val MAX_PAGES = PhotoItem.values().size
         val DEFAULT_PAGES = 3
     }
