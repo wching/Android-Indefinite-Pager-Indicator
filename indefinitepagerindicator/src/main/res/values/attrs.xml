@@ -9,5 +9,6 @@
         <attr name="dotColor" format="color" />
         <attr name="selectedDotColor" format="color" />
         <attr name="dotSeparation" format="dimension" />
+        <attr name="supportRTL" format="boolean" />
     </declare-styleable>
 </resources>
