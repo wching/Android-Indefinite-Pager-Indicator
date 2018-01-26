@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import com.rbrooks.indefinitepagerindicatorsample.recyclerViewSample.RecyclerViewSampleFragment
 import com.rbrooks.indefinitepagerindicatorsample.util.OnPagerNumberChangeListener
 import com.rbrooks.indefinitepagerindicatorsample.util.PagerNumberPickerDialogPreference
+import com.rbrooks.indefinitepagerindicatorsample.viewPagerSample.RTLViewPagerSampleFragment
 import com.rbrooks.indefinitepagerindicatorsample.viewPagerSample.ViewPagerSampleFragment
 
 class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, OnPagerNumberChangeListener {
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, OnPag
     private lateinit var fragmentLayout: FrameLayout
     private lateinit var viewPagerSampleFragment: ViewPagerSampleFragment
     private lateinit var recyclerViewSampleFragment: RecyclerViewSampleFragment
+    private lateinit var rtlViewPagerSampleFragment: RTLViewPagerSampleFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +50,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, OnPag
     private fun setupFragments() {
         viewPagerSampleFragment = ViewPagerSampleFragment()
         recyclerViewSampleFragment = RecyclerViewSampleFragment()
+        rtlViewPagerSampleFragment = RTLViewPagerSampleFragment()
     }
 
     private fun setFragment(fragment: Fragment) {
@@ -59,6 +62,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, OnPag
         when (tab?.position) {
             0 -> setFragment(viewPagerSampleFragment)
             1 -> setFragment(recyclerViewSampleFragment)
+            2 -> setFragment(rtlViewPagerSampleFragment)
         }
     }
 
@@ -69,5 +73,6 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, OnPag
     override fun onPagerNumberChanged() {
         (viewPagerSampleFragment as OnPagerNumberChangeListener).onPagerNumberChanged()
         (recyclerViewSampleFragment as OnPagerNumberChangeListener).onPagerNumberChanged()
+        (rtlViewPagerSampleFragment as OnPagerNumberChangeListener).onPagerNumberChanged()
     }
 }
