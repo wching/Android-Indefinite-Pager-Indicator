@@ -48,6 +48,9 @@
 
             <android.support.design.widget.TabItem android:text="@string/recyclerview" />
 
+            <android.support.design.widget.TabItem android:text="@string/rtl_view_pager"/>
+
+
         </android.support.design.widget.TabLayout>
 
     </RelativeLayout>

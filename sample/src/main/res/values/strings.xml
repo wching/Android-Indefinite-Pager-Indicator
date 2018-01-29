@@ -55,4 +55,6 @@
 
     <string name="previous">Previous</string>
     <string name="next">Next</string>
+    <string name="rtl_view_pager">RTL View Pager</string>
+    <string name="rtl_viewpager_ref">The ViewPager below is RtlViewPager lib by Duolingo</string>
 </resources>
