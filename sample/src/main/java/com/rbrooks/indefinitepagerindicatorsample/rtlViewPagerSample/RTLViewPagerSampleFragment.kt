@@ -20,7 +20,7 @@ class RTLViewPagerSampleFragment : Fragment(), OnPagerNumberChangeListener, View
     private var pagerAdapter: ViewPagerAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.rtl_fragment_view_pager_sample, container, false)
+        val view = inflater.inflate(R.layout.fragment_rtl_view_pager_sample, container, false)
 
         bindViews(view)
         setupViews()
