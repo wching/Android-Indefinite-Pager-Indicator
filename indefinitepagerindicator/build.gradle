@@ -15,7 +15,7 @@ ext {
     siteUrl = 'https://github.com/rbro112/Android-Indefinite-Pager-Indicator'
     gitUrl = 'https://github.com/rbro112/Android-Indefinite-Pager-Indicator.git'
 
-    libraryVersion = '1.0.4'
+    libraryVersion = '1.0.5'
 
     developerId = 'rbro112'
     developerName = 'Ryan Brooks'
