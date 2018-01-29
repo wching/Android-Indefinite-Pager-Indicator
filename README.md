@@ -6,12 +6,12 @@ A lightweight, plug-and-play indefinite pager indicator for RecyclerViews &amp; 
 
 # Usage
 
- [ ![Download](https://api.bintray.com/packages/rbro112/maven/IndefinitePagerIndicator/images/download.svg?version=1.0.4) ](https://bintray.com/rbro112/maven/IndefinitePagerIndicator/1.0.4/link)
+ [ ![Download](https://api.bintray.com/packages/rbro112/maven/IndefinitePagerIndicator/images/download.svg?version=1.0.5) ](https://bintray.com/rbro112/maven/IndefinitePagerIndicator/1.0.5/link)
 
 To use the IndefinitePagerIndicator, simply add the gradle dependency to your module's `build.gradle` file:
 
 ```groovy
-compile 'com.ryanjeffreybrooks:indefinitepagerindicator:1.0.4'
+compile 'com.ryanjeffreybrooks:indefinitepagerindicator:1.0.5'
 ```
 
 Min SDK supported is version 16 - Jelly Bean.
@@ -104,6 +104,7 @@ To customize the IndefinitePagerIndicator, modify any of the following attribute
 | dotSeparation         | The distance from edge to edge of each dot in DP.         | 10dp          | `app:dotSeparation="16dp"`       |     ![Alt text](/readme_assets/dot_separation_sample.png "dotSeparation")     |
 | dotCount              | The number of large visible dot indicators at any time.   | 5             | `app:dotCount="3"`               |     ![Alt text](/readme_assets/dot_count_sample.png "dotCount")     |
 | fadingDotCount        | The number of dot indicators that fade towards the edge.  | 1             | `app:fadingDotCount="2"`         |     ![Alt text](/readme_assets/fading_dot_count_sample.png "fadingDotCount")     |
+| supportRTL            | Adds support for RTL ViewPagers (Thanks @wching!)         | false         | `app:supportRTL="true"`          |     If current layout mode is RTL, indicator will move from right to left with scrolling. |
 
 ## TODO:
 
