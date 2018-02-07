@@ -344,7 +344,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
         private fun setIntermediateSelectedItemPosition(mostVisibleChild: View?) {
             with(recyclerView?.findContainingViewHolder(mostVisibleChild)?.adapterPosition!!) {
 
-                intermediateSelectedItemPosition = if (isRtl()) {
+                intermediateSelectedItemPosition = if (isRtl() && supportRtl) {
                     getRTLPosition(this)
                 } else {
                     this
