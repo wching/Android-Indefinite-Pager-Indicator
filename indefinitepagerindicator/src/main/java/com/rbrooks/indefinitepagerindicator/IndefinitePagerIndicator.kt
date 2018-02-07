@@ -230,9 +230,9 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
     private fun isRtl() = ViewCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_RTL
 
     /**
-     * Gets the RTL position of the Item
+     * Gets the RTL position of the position in any adapter
      */
-    private fun getRTLPosition(position: Int) = viewPager?.adapter?.count!! - position - 1
+    private fun getRTLPosition(position: Int) = getPagerItemCount() - position - 1
 
     /**
      * ViewPager.OnPageChangeListener implementation.
@@ -294,12 +294,14 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
                 offsetPercent = view.left.toFloat() / view.measuredWidth
             }
 
-            val layoutManager = recyclerView?.layoutManager as LinearLayoutManager
-            val visibleItemPosition = if (dx >= 0) layoutManager.findLastVisibleItemPosition() else layoutManager.findFirstVisibleItemPosition()
+            with(recyclerView?.layoutManager as LinearLayoutManager) {
+                val visibleItemPosition = if (dx >= 0) findLastVisibleItemPosition() else findFirstVisibleItemPosition()
 
-            if (previousMostVisibleChild !== layoutManager.findViewByPosition(visibleItemPosition)) {
-                selectedItemPosition = intermediateSelectedItemPosition
+                if (previousMostVisibleChild !== findViewByPosition(visibleItemPosition)) {
+                    selectedItemPosition = intermediateSelectedItemPosition
+                }
             }
+
             previousMostVisibleChild = view
             invalidate()
         }
@@ -340,7 +342,14 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
         }
 
         private fun setIntermediateSelectedItemPosition(mostVisibleChild: View?) {
-            intermediateSelectedItemPosition = recyclerView?.findContainingViewHolder(mostVisibleChild)?.adapterPosition!!
+            with(recyclerView?.findContainingViewHolder(mostVisibleChild)?.adapterPosition!!) {
+
+                intermediateSelectedItemPosition = if (isRtl() && supportRtl) {
+                    getRTLPosition(this)
+                } else {
+                    this
+                }
+            }
         }
     }
 }
