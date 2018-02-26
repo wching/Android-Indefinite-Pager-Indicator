@@ -82,6 +82,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
 
         selectedDotPaint.style = Paint.Style.FILL
         selectedDotPaint.color = selectedDotColor
+        selectedDotPaint.isAntiAlias = true
         dotPaint.style = Paint.Style.FILL
         dotPaint.color = dotColor
         dotPaint.isAntiAlias = true
