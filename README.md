@@ -112,8 +112,6 @@ Actively working on these. If you would like to help, submit a PR!
 
 - "Instagram" style -- Selected dot starts at the left of the view rather than starting in the center.
 
-- Vertical layout support.
-
 - Support for padding.
 
 ## Notes
