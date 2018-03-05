@@ -15,6 +15,7 @@ class ViewPagerSampleFragment : Fragment(), OnPagerNumberChangeListener, View.On
     private lateinit var viewPager: ViewPager
 
     private lateinit var pagerIndicator: IndefinitePagerIndicator
+    private lateinit var verticalPagerIndicator: IndefinitePagerIndicator
     private lateinit var previousButton: Button
     private lateinit var nextButton: Button
     private var pagerAdapter: ViewPagerAdapter? = null
@@ -33,13 +34,14 @@ class ViewPagerSampleFragment : Fragment(), OnPagerNumberChangeListener, View.On
         pagerIndicator = view.findViewById(R.id.viewpager_pager_indicator)
         previousButton = view.findViewById(R.id.viewpager_previous_button)
         nextButton = view.findViewById(R.id.viewpager_next_button)
+        verticalPagerIndicator = view.findViewById(R.id.viewpager_vertical_pager_indicator)
     }
 
     private fun setupViews() {
         pagerAdapter = ViewPagerAdapter(context)
         viewPager.adapter = pagerAdapter
         pagerIndicator.attachToViewPager(viewPager)
-
+	    verticalPagerIndicator.attachToViewPager(viewPager)
         previousButton.setOnClickListener(this)
         nextButton.setOnClickListener(this)
     }

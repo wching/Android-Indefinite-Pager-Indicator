@@ -102,19 +102,19 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
 	override fun onDraw(canvas: Canvas) {
 		super.onDraw(canvas)
 		(0 until getPagerItemCount())
-				.map { getDotCoordinate(it) }
-				.forEach {
-					val xPosition: Float
-					val yPosition: Float
-					if (verticalSupport) {
-						xPosition = getDotYCoordinate().toFloat()
-						yPosition = height / 2 + it
-					} else {
-						xPosition = width / 2 + it
-						yPosition = getDotYCoordinate().toFloat()
-					}
-					canvas.drawCircle(xPosition, yPosition, getRadius(it), getPaint(it))
+			.map { getDotCoordinate(it) }
+			.forEach {
+				val xPosition: Float
+				val yPosition: Float
+				if (verticalSupport) {
+					xPosition = getDotYCoordinate().toFloat()
+					yPosition = height / 2 + it
+				} else {
+					xPosition = width / 2 + it
+					yPosition = getDotYCoordinate().toFloat()
 				}
+				canvas.drawCircle(xPosition, yPosition, getRadius(it), getPaint(it))
+			}
 	}
 
 	/**
@@ -139,9 +139,8 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
 	 * Gets the coordinate for a dot based on the position in the pager.
 	 */
 	private fun getDotCoordinate(pagerPosition: Int): Float =
-			(pagerPosition - intermediateSelectedItemPosition) *
-					getDistanceBetweenTheCenterOfTwoDots() +
-					(getDistanceBetweenTheCenterOfTwoDots() * offsetPercent)
+		(pagerPosition - intermediateSelectedItemPosition) * getDistanceBetweenTheCenterOfTwoDots() +
+			(getDistanceBetweenTheCenterOfTwoDots() * offsetPercent)
 
 	/**
 	 * Get the y coordinate for a dot.
