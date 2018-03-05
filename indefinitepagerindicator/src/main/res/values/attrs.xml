@@ -10,5 +10,6 @@
         <attr name="selectedDotColor" format="color" />
         <attr name="dotSeparation" format="dimension" />
         <attr name="supportRTL" format="boolean" />
+        <attr name="verticalSupport" format="boolean" />
     </declare-styleable>
 </resources>
