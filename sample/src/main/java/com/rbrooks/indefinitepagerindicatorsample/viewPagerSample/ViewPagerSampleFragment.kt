@@ -41,7 +41,7 @@ class ViewPagerSampleFragment : Fragment(), OnPagerNumberChangeListener, View.On
         pagerAdapter = ViewPagerAdapter(context)
         viewPager.adapter = pagerAdapter
         pagerIndicator.attachToViewPager(viewPager)
-	    verticalPagerIndicator.attachToViewPager(viewPager)
+        verticalPagerIndicator.attachToViewPager(viewPager)
         previousButton.setOnClickListener(this)
         nextButton.setOnClickListener(this)
     }

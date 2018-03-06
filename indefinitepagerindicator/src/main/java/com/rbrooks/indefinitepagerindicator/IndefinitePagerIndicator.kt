@@ -42,7 +42,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
     private var dotRadiusPx = dpToPx(DEFAULT_DOT_RADIUS_DP.toFloat(), resources)
     private var dotSeparationDistancePx = dpToPx(DEFAULT_DOT_SEPARATION_DISTANCE_DP.toFloat(), resources)
     private var supportRtl = false
-	private var verticalSupport = false
+    private var verticalSupport = false
 
     @ColorInt
     private var dotColor: Int = ContextCompat.getColor(this.context, R.color.default_dot_color)
@@ -79,7 +79,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
             selectedDotColor = typedArray.getColor(R.styleable.IndefinitePagerIndicator_selectedDotColor, selectedDotColor)
             dotSeparationDistancePx = typedArray.getDimensionPixelSize(R.styleable.IndefinitePagerIndicator_dotSeparation, dotSeparationDistancePx)
             supportRtl = typedArray.getBoolean(R.styleable.IndefinitePagerIndicator_supportRTL, false)
-	        verticalSupport = typedArray.getBoolean(R.styleable.IndefinitePagerIndicator_verticalSupport, false)
+            verticalSupport = typedArray.getBoolean(R.styleable.IndefinitePagerIndicator_verticalSupport, false)
         }
 
         selectedDotPaint.style = Paint.Style.FILL
@@ -90,71 +90,70 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
         dotPaint.isAntiAlias = true
     }
 
-	/**
-	 * Iterate over the total pager item count and draw every dot based on position.
-	 *
-	 * Helper methods - getDotCoordinate(Int) & getRadius(Int)
-	 * will return values outside the calculated width or with an invalid radius
-	 * if the dot is not to be drawn.
-	 *
-	 * TODO: "Instagram style" drawing where all dots are drawn at once.
-	 */
-	override fun onDraw(canvas: Canvas) {
-		super.onDraw(canvas)
-		(0 until getPagerItemCount())
-			.map { getDotCoordinate(it) }
-			.forEach {
-				val xPosition: Float
-				val yPosition: Float
-				if (verticalSupport) {
-					xPosition = getDotYCoordinate().toFloat()
-					yPosition = height / 2 + it
-				} else {
-					xPosition = width / 2 + it
-					yPosition = getDotYCoordinate().toFloat()
-				}
-				canvas.drawCircle(xPosition, yPosition, getRadius(it), getPaint(it))
-			}
-	}
+    /**
+     * Iterate over the total pager item count and draw every dot based on position.
+     *
+     * Helper methods - getDotCoordinate(Int) & getRadius(Int)
+     * will return values outside the calculated width or with an invalid radius
+     * if the dot is not to be drawn.
+     *
+     * TODO: "Instagram style" drawing where all dots are drawn at once.
+     */
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        (0 until getPagerItemCount())
+            .map { getDotCoordinate(it) }
+            .forEach {
+                val xPosition: Float
+                val yPosition: Float
+                if (verticalSupport) {
+                    xPosition = getDotYCoordinate().toFloat()
+                    yPosition = height / 2 + it
+                } else {
+                    xPosition = width / 2 + it
+                    yPosition = getDotYCoordinate().toFloat()
+                }
+                canvas.drawCircle(xPosition, yPosition, getRadius(it), getPaint(it))
+            }
+    }
 
-	/**
-	 * Set the dimensions of the IndefinitePagerIndicator.
-	 * Width/Height is calculated below with getCalculatedWidth().
-	 * Width/Height is simply the diameter of the largest circle.
-	 *
-	 * TODO: Add support for padding.
-	 * TODO: Add support for MATCH_PARENT & FILL_PARENT
-	 */
-	override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-		val minimumViewSize = 2 * selectedDotRadiusPx
-		if (verticalSupport) {
-			setMeasuredDimension(minimumViewSize, getCalculatedWidth())
-		} else {
-			setMeasuredDimension(getCalculatedWidth(), minimumViewSize)
-		}
-	}
-
-
-	/**
-	 * Gets the coordinate for a dot based on the position in the pager.
-	 */
-	private fun getDotCoordinate(pagerPosition: Int): Float =
-		(pagerPosition - intermediateSelectedItemPosition) * getDistanceBetweenTheCenterOfTwoDots() +
-			(getDistanceBetweenTheCenterOfTwoDots() * offsetPercent)
-
-	/**
-	 * Get the y coordinate for a dot.
-	 *
-	 * The bottom of the view is y = 0 and a dot is drawn from the center, so therefore
-	 * the y coordinate is simply the radius.
-	 */
-	private fun getDotYCoordinate(): Int = selectedDotRadiusPx
+    /**
+     * Set the dimensions of the IndefinitePagerIndicator.
+     * Width/Height is calculated below with getCalculatedWidth().
+     * Width/Height is simply the diameter of the largest circle.
+     *
+     * TODO: Add support for padding.
+     * TODO: Add support for MATCH_PARENT & FILL_PARENT
+     */
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val minimumViewSize = 2 * selectedDotRadiusPx
+        if (verticalSupport) {
+           setMeasuredDimension(minimumViewSize, getCalculatedWidth())
+        } else {
+           setMeasuredDimension(getCalculatedWidth(), minimumViewSize)
+        }
+    }
 
 
-	/**
-	 * Calculates the distance between 2 dots center.
-	 */
-	private fun getDistanceBetweenTheCenterOfTwoDots() = 2 * dotRadiusPx + dotSeparationDistancePx
+    /**
+     * Gets the coordinate for a dot based on the position in the pager.
+     */
+    private fun getDotCoordinate(pagerPosition: Int): Float =
+        (pagerPosition - intermediateSelectedItemPosition) * getDistanceBetweenTheCenterOfTwoDots() +
+            (getDistanceBetweenTheCenterOfTwoDots() * offsetPercent)
+
+    /**
+     * Get the y coordinate for a dot.
+     *
+     * The bottom of the view is y = 0 and a dot is drawn from the center, so therefore
+     * the y coordinate is simply the radius.
+     */
+    private fun getDotYCoordinate(): Int = selectedDotRadiusPx
+
+    /**
+     * Calculates the distance between 2 dots center.
+     */
+    private fun getDistanceBetweenTheCenterOfTwoDots() = 2 * dotRadiusPx + dotSeparationDistancePx
 
     /**
      * Calculates a dot's radius based on x position.
@@ -184,29 +183,29 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
         }
     }
 
-	/**
-	 * Returns the dot's color based on coordinate, similar to {@link #getRadius(Float)}.
-	 *
-	 * If the position is within 1 dot's length of x or y = 0, it is the currently selected dot.
-	 *
-	 * All other dots will be the normal specified dot color.
-	 */
-	private fun getPaint(coordinate: Float): Paint = when {
-		Math.abs(coordinate) < getDistanceBetweenTheCenterOfTwoDots() / 2 -> selectedDotPaint
-		else -> dotPaint
-	}
+    /**
+     * Returns the dot's color based on coordinate, similar to {@link #getRadius(Float)}.
+     *
+     * If the position is within 1 dot's length of x or y = 0, it is the currently selected dot.
+     *
+     * All other dots will be the normal specified dot color.
+     */
+    private fun getPaint(coordinate: Float): Paint = when {
+        Math.abs(coordinate) < getDistanceBetweenTheCenterOfTwoDots() / 2 -> selectedDotPaint
+        else -> dotPaint
+    }
 
-	/**
-	 * Get the calculated width of the view.
-	 *
-	 * Calculated by the total number of visible dots (normal & fading).
-	 *
-	 * TODO: Add support for padding.
-	 */
-	private fun getCalculatedWidth(): Int {
-		val maxNumVisibleDots = dotCount + 2 * fadingDotCount
-		return (maxNumVisibleDots - 1) * getDistanceBetweenTheCenterOfTwoDots() + 2 * dotRadiusPx
-	}
+    /**
+     * Get the calculated width of the view.
+     *
+     * Calculated by the total number of visible dots (normal & fading).
+     *
+     * TODO: Add support for padding.
+     */
+    private fun getCalculatedWidth(): Int {
+        val maxNumVisibleDots = dotCount + 2 * fadingDotCount
+        return (maxNumVisibleDots - 1) * getDistanceBetweenTheCenterOfTwoDots() + 2 * dotRadiusPx
+    }
 
     /**
      * Attach a RecyclerView to the Pager Indicator.
