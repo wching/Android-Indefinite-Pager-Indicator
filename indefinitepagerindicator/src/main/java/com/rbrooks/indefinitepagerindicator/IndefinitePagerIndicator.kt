@@ -170,9 +170,9 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
     private fun getRadius(coordinate: Float): Float {
         val coordinateAbs = Math.abs(coordinate)
         // Get the coordinate where dots begin showing as fading dots (x coordinates > half of width of all large dots)
-        val largeDotThreshold = dotCount.toFloat() / 2 * (dotSeparationDistancePx + 2 * dotRadiusPx)
+        val largeDotThreshold = dotCount.toFloat() / 2 * getDistanceBetweenTheCenterOfTwoDots()
         return when {
-            coordinateAbs < (dotSeparationDistancePx + 2 * dotRadiusPx) / 2 -> selectedDotRadiusPx.toFloat()
+            coordinateAbs < getDistanceBetweenTheCenterOfTwoDots() / 2 -> selectedDotRadiusPx.toFloat()
             coordinateAbs <= largeDotThreshold -> dotRadiusPx.toFloat()
             else -> {
                 // Determine how close the dot is to the edge of the view for scaling the size of the dot
