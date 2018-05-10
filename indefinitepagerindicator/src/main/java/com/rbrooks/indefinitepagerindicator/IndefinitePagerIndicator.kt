@@ -82,12 +82,16 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
             verticalSupport = typedArray.getBoolean(R.styleable.IndefinitePagerIndicator_verticalSupport, false)
         }
 
-        selectedDotPaint.style = Paint.Style.FILL
-        selectedDotPaint.color = selectedDotColor
-        selectedDotPaint.isAntiAlias = true
-        dotPaint.style = Paint.Style.FILL
-        dotPaint.color = dotColor
-        dotPaint.isAntiAlias = true
+        selectedDotPaint.apply {
+            style = Paint.Style.FILL
+            color = selectedDotColor
+            isAntiAlias = true
+        }
+        dotPaint.apply {
+            style = Paint.Style.FILL
+            color = dotColor
+            isAntiAlias = true
+        }
     }
 
     /**
