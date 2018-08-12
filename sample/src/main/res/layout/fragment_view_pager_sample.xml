@@ -37,6 +37,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
+        android:visibility="gone"
         indefinite_pager_indicator:dotColor="@android:color/holo_red_dark"
         indefinite_pager_indicator:selectedDotColor="@android:color/holo_red_dark"
         indefinite_pager_indicator:verticalSupport="true"
