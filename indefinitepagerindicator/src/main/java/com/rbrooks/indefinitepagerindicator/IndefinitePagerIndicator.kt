@@ -15,7 +15,11 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 
-class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) : View(context, attrs, defStyle), ViewPager.OnPageChangeListener {
+class IndefinitePagerIndicator @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyle: Int = 0
+) : View(context, attrs, defStyle), ViewPager.OnPageChangeListener {
 
     companion object {
 
@@ -40,15 +44,18 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
     private var fadingDotCount = DEFAULT_FADING_DOT_COUNT
     private var selectedDotRadiusPx = dpToPx(DEFAULT_SELECTED_DOT_RADIUS_DP, resources)
     private var dotRadiusPx = dpToPx(DEFAULT_DOT_RADIUS_DP.toFloat(), resources)
-    private var dotSeparationDistancePx = dpToPx(DEFAULT_DOT_SEPARATION_DISTANCE_DP.toFloat(), resources)
+    private var dotSeparationDistancePx =
+        dpToPx(DEFAULT_DOT_SEPARATION_DISTANCE_DP.toFloat(), resources)
     private var supportRtl = false
     private var verticalSupport = false
 
     @ColorInt
     private var dotColor: Int = ContextCompat.getColor(this.context, R.color.default_dot_color)
     @ColorInt
-    private var selectedDotColor: Int = ContextCompat.getColor(this.context, R.color
-            .default_selected_dot_color)
+    private var selectedDotColor: Int = ContextCompat.getColor(
+        this.context,
+        R.color.default_selected_dot_color
+    )
     private val selectedDotPaint = Paint()
     private val dotPaint = Paint()
 
@@ -70,16 +77,43 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
 
     init {
         attrs?.let {
-            val typedArray = context.theme.obtainStyledAttributes(attrs, R.styleable.IndefinitePagerIndicator, 0, 0)
-            dotCount = typedArray.getInteger(R.styleable.IndefinitePagerIndicator_dotCount, DEFAULT_DOT_COUNT)
-            fadingDotCount = typedArray.getInt(R.styleable.IndefinitePagerIndicator_fadingDotCount, DEFAULT_FADING_DOT_COUNT)
-            dotRadiusPx = typedArray.getDimensionPixelSize(R.styleable.IndefinitePagerIndicator_dotRadius, dotRadiusPx)
-            selectedDotRadiusPx = typedArray.getDimensionPixelSize(R.styleable.IndefinitePagerIndicator_selectedDotRadius, selectedDotRadiusPx)
+            val typedArray = context.theme.obtainStyledAttributes(
+                attrs,
+                R.styleable.IndefinitePagerIndicator,
+                0,
+                0
+            )
+            dotCount = typedArray.getInteger(
+                R.styleable.IndefinitePagerIndicator_dotCount,
+                DEFAULT_DOT_COUNT
+            )
+            fadingDotCount = typedArray.getInt(
+                R.styleable.IndefinitePagerIndicator_fadingDotCount,
+                DEFAULT_FADING_DOT_COUNT
+            )
+            dotRadiusPx = typedArray.getDimensionPixelSize(
+                R.styleable.IndefinitePagerIndicator_dotRadius,
+                dotRadiusPx
+            )
+            selectedDotRadiusPx = typedArray.getDimensionPixelSize(
+                R.styleable.IndefinitePagerIndicator_selectedDotRadius,
+                selectedDotRadiusPx
+            )
             dotColor = typedArray.getColor(R.styleable.IndefinitePagerIndicator_dotColor, dotColor)
-            selectedDotColor = typedArray.getColor(R.styleable.IndefinitePagerIndicator_selectedDotColor, selectedDotColor)
-            dotSeparationDistancePx = typedArray.getDimensionPixelSize(R.styleable.IndefinitePagerIndicator_dotSeparation, dotSeparationDistancePx)
-            supportRtl = typedArray.getBoolean(R.styleable.IndefinitePagerIndicator_supportRTL, false)
-            verticalSupport = typedArray.getBoolean(R.styleable.IndefinitePagerIndicator_verticalSupport, false)
+            selectedDotColor = typedArray.getColor(
+                R.styleable.IndefinitePagerIndicator_selectedDotColor,
+                selectedDotColor
+            )
+            dotSeparationDistancePx = typedArray.getDimensionPixelSize(
+                R.styleable.IndefinitePagerIndicator_dotSeparation,
+                dotSeparationDistancePx
+            )
+            supportRtl =
+                    typedArray.getBoolean(R.styleable.IndefinitePagerIndicator_supportRTL, false)
+            verticalSupport = typedArray.getBoolean(
+                R.styleable.IndefinitePagerIndicator_verticalSupport,
+                false
+            )
         }
 
         selectedDotPaint.apply {
@@ -127,14 +161,14 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
      * Width/Height is simply the diameter of the largest circle.
      *
      * TODO: Add support for padding.
-     * TODO: Add support for MATCH_PARENT & FILL_PARENT
+     * TODO: Add support for MATCH_PARENT
      */
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val minimumViewSize = 2 * selectedDotRadiusPx
         if (verticalSupport) {
-           setMeasuredDimension(minimumViewSize, getCalculatedWidth())
+            setMeasuredDimension(minimumViewSize, getCalculatedWidth())
         } else {
-           setMeasuredDimension(getCalculatedWidth(), minimumViewSize)
+            setMeasuredDimension(getCalculatedWidth(), minimumViewSize)
         }
     }
 
@@ -144,7 +178,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
      */
     private fun getDotCoordinate(pagerPosition: Int): Float =
         (pagerPosition - intermediateSelectedItemPosition) * getDistanceBetweenTheCenterOfTwoDots() +
-            (getDistanceBetweenTheCenterOfTwoDots() * offsetPercent)
+                (getDistanceBetweenTheCenterOfTwoDots() * offsetPercent)
 
     /**
      * Get the y coordinate for a dot.
@@ -160,14 +194,14 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
     private fun getDistanceBetweenTheCenterOfTwoDots() = 2 * dotRadiusPx + dotSeparationDistancePx
 
     /**
-     * Calculates a dot's radius based on x position.
+     * Calculates a dot's radius based on it's position.
      *
-     * If the x position is within 1 dot's length of x = 0, it is the currently selected dot.
+     * If the position is within 1 dot's length, it's the currently selected dot.
      *
-     * If the x position is within a threshold (half the width of the number of non fading dots),
+     * If the position is within a threshold (half the width of the number of non fading dots),
      * it is a normal sized dot.
      *
-     * If the x position is outside of the above threshold, it is a fading dot or not visible. The
+     * If the position is outside of the above threshold, it is a fading dot or not visible. The
      * radius is calculated based on a interpolator percentage of how far the
      * viewpager/recyclerview has scrolled.
      */
@@ -181,7 +215,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
             else -> {
                 // Determine how close the dot is to the edge of the view for scaling the size of the dot
                 val percentTowardsEdge = (coordinateAbs - largeDotThreshold) /
-		                (getCalculatedWidth() / 2.01f - largeDotThreshold)
+                        (getCalculatedWidth() / 2.01f - largeDotThreshold)
                 interpolator.getInterpolation(1 - percentTowardsEdge) * dotRadiusPx
             }
         }
@@ -323,7 +357,8 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
             }
 
             with(recyclerView?.layoutManager as LinearLayoutManager) {
-                val visibleItemPosition = if (dx >= 0) findLastVisibleItemPosition() else findFirstVisibleItemPosition()
+                val visibleItemPosition =
+                    if (dx >= 0) findLastVisibleItemPosition() else findFirstVisibleItemPosition()
 
                 if (previousMostVisibleChild !== findViewByPosition(visibleItemPosition)) {
                     selectedItemPosition = intermediateSelectedItemPosition
