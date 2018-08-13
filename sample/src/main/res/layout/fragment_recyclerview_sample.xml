@@ -25,10 +25,7 @@
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginEnd="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginStart="30dp"/>
+            android:layout_margin="30dp"/>
 
         <com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
             android:id="@+id/recyclerview_pager_indicator"
