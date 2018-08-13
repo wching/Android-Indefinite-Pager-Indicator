@@ -19,15 +19,15 @@ class IndefinitePagerIndicator @JvmOverloads constructor(context: Context, attrs
 
     companion object {
 
-        private val DEFAULT_DOT_COUNT = 5
-        private val DEFAULT_FADING_DOT_COUNT = 1
-        private val DEFAULT_DOT_RADIUS_DP = 4
-        private val DEFAULT_SELECTED_DOT_RADIUS_DP = 5.5f
+        private const val DEFAULT_DOT_COUNT = 5
+        private const val DEFAULT_FADING_DOT_COUNT = 1
+        private const val DEFAULT_DOT_RADIUS_DP = 4
+        private const val DEFAULT_SELECTED_DOT_RADIUS_DP = 5.5f
         // Measured outside of first dot to outside of next dot: O<->O
-        private val DEFAULT_DOT_SEPARATION_DISTANCE_DP = 10
+        private const val DEFAULT_DOT_SEPARATION_DISTANCE_DP = 10
 
         private fun dpToPx(dp: Float, resources: Resources): Int =
-                (dp * ((resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT).toFloat())).toInt()
+            (dp * ((resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT).toFloat())).toInt()
 
     }
 
