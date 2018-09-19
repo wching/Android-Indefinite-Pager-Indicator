@@ -44,7 +44,7 @@ class PagerNumberPickerDialogPreference : DialogFragment() {
                     (activity as OnPagerNumberChangeListener).onPagerNumberChanged()
                     dismiss()
                 }
-                .setNegativeButton(R.string.pager_number_picker_dialog_negative_text, { dialog, which -> dismiss() })
+                .setNegativeButton(R.string.pager_number_picker_dialog_negative_text) { dialog, which -> dismiss() }
                 .create()
     }
 
