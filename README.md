@@ -1,4 +1,5 @@
-# Android Indefinite Pager Indicator  [![Gradle Version](https://img.shields.io/badge/gradle-4.10.1-green.svg)](https://docs.gradle.org/current/release-notes) [![kotlin](https://img.shields.io/badge/kotlin-1.2.70-green.svg)](https://kotlinlang.org/) [![androidx](https://img.shields.io/badge/androidx-1.0.0--rc02-brightgreen.svg)](https://developer.android.com/topic/libraries/support-library/refactor)
+# Android Indefinite Pager Indicator  [![](https://jitpack.io/v/kibotu/Android-Indefinite-Pager-Indicator.svg)](https://jitpack.io/#kibotu/Android-Indefinite-Pager-Indicator)
+ [![Gradle Version](https://img.shields.io/badge/gradle-4.10.1-green.svg)](https://docs.gradle.org/current/release-notes) [![kotlin](https://img.shields.io/badge/kotlin-1.2.70-green.svg)](https://kotlinlang.org/) [![androidx](https://img.shields.io/badge/androidx-1.0.0--rc02-brightgreen.svg)](https://developer.android.com/topic/libraries/support-library/refactor)
 
 A lightweight, plug-and-play indefinite pager indicator for RecyclerViews &amp; ViewPagers.
 
