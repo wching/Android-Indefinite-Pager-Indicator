@@ -7,15 +7,8 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.0-alpha10'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
     }
-}
-
-plugins {
-    id "com.github.dcendents.android-maven" version "2.0"
-    id "com.jfrog.bintray" version "1.8.0"
 }
 
 allprojects {
