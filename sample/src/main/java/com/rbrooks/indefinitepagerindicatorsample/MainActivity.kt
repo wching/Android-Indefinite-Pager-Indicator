@@ -1,15 +1,15 @@
 package com.rbrooks.indefinitepagerindicatorsample
 
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.widget.FrameLayout
 import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.google.android.material.tabs.TabLayout
 import com.rbrooks.indefinitepagerindicatorsample.recyclerViewSample.RecyclerViewSampleFragment
+import com.rbrooks.indefinitepagerindicatorsample.rtlViewPagerSample.RTLViewPagerSampleFragment
 import com.rbrooks.indefinitepagerindicatorsample.util.OnPagerNumberChangeListener
 import com.rbrooks.indefinitepagerindicatorsample.util.PagerNumberPickerDialogPreference
-import com.rbrooks.indefinitepagerindicatorsample.viewPagerSample.RTLViewPagerSampleFragment
 import com.rbrooks.indefinitepagerindicatorsample.viewPagerSample.ViewPagerSampleFragment
 
 class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, OnPagerNumberChangeListener {
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, OnPag
     }
 
     private fun initViews() {
-        pagerQuantityButton.setOnClickListener({ PagerNumberPickerDialogPreference().show(fragmentManager, null) })
+        pagerQuantityButton.setOnClickListener { PagerNumberPickerDialogPreference().show(supportFragmentManager, null) }
         tabLayout.addOnTabSelectedListener(this)
         setFragment(viewPagerSampleFragment)
     }

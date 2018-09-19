@@ -34,7 +34,7 @@
             android:padding="8dp"
             android:src="@drawable/ic_pager_quantity" />
 
-        <android.support.design.widget.TabLayout
+        <com.google.android.material.tabs.TabLayout
             android:id="@+id/main_activity_tab_layout"
             style="@style/TabBarTheme"
             android:layout_width="match_parent"
@@ -44,14 +44,20 @@
             app:tabGravity="fill"
             app:tabMode="fixed">
 
-            <android.support.design.widget.TabItem android:text="@string/view_pager" />
+            <com.google.android.material.tabs.TabItem android:text="@string/view_pager"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
 
-            <android.support.design.widget.TabItem android:text="@string/recyclerview" />
+            <com.google.android.material.tabs.TabItem android:text="@string/recyclerview"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
 
-            <android.support.design.widget.TabItem android:text="@string/rtl_view_pager"/>
+            <com.google.android.material.tabs.TabItem android:text="@string/rtl_view_pager"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
 
 
-        </android.support.design.widget.TabLayout>
+        </com.google.android.material.tabs.TabLayout>
 
     </RelativeLayout>
 

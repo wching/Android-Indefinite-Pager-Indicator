@@ -1,15 +1,15 @@
 package com.rbrooks.indefinitepagerindicatorsample.recyclerViewSample
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
 import com.rbrooks.indefinitepagerindicatorsample.R
 import com.rbrooks.indefinitepagerindicatorsample.util.OnPagerNumberChangeListener
-import com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
 
 class RecyclerViewSampleFragment : Fragment(), OnPagerNumberChangeListener {
 
@@ -33,7 +33,7 @@ class RecyclerViewSampleFragment : Fragment(), OnPagerNumberChangeListener {
     }
 
     private fun setupViews() {
-        recyclerViewAdapter = PhotoItemRecyclerAdapter(context)
+        recyclerViewAdapter = PhotoItemRecyclerAdapter(context!!)
         recyclerView.adapter = recyclerViewAdapter
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         pagerIndicator.attachToRecyclerView(recyclerView)

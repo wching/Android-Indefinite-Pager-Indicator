@@ -1,15 +1,16 @@
-package com.rbrooks.indefinitepagerindicatorsample.viewPagerSample
+package com.rbrooks.indefinitepagerindicatorsample.rtlViewPagerSample
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
 import com.rbrooks.indefinitepagerindicatorsample.R
 import com.rbrooks.indefinitepagerindicatorsample.util.OnPagerNumberChangeListener
+import com.rbrooks.indefinitepagerindicatorsample.viewPagerSample.ViewPagerAdapter
 
 class RTLViewPagerSampleFragment : Fragment(), OnPagerNumberChangeListener, View.OnClickListener {
     private lateinit var viewPager: ViewPager
@@ -36,7 +37,7 @@ class RTLViewPagerSampleFragment : Fragment(), OnPagerNumberChangeListener, View
     }
 
     private fun setupViews() {
-        pagerAdapter = ViewPagerAdapter(context)
+        pagerAdapter = ViewPagerAdapter(context!!)
         viewPager.adapter = pagerAdapter
         pagerIndicator.attachToViewPager(viewPager)
 
@@ -52,13 +53,13 @@ class RTLViewPagerSampleFragment : Fragment(), OnPagerNumberChangeListener, View
         when (v?.id) {
             R.id.viewpager_previous_button -> {
                 if (viewPager.currentItem == 0) {
-                    viewPager.currentItem = viewPager.adapter.count - 1
+                    viewPager.currentItem = viewPager.adapter!!.count - 1
                 } else {
                     viewPager.currentItem = viewPager.currentItem - 1
                 }
             }
             R.id.viewpager_next_button -> {
-                if (viewPager.currentItem == viewPager.adapter.count - 1) {
+                if (viewPager.currentItem == viewPager.adapter!!.count - 1) {
                     viewPager.currentItem = 0
                 } else {
                     viewPager.currentItem = viewPager.currentItem + 1
