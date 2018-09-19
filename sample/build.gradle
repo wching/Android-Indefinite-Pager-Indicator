@@ -27,6 +27,18 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    // region lint options
+
+    lintOptions {
+        disable 'InvalidPackage'
+        abortOnError false        // true by default
+        checkAllWarnings false
+        checkReleaseBuilds false
+        ignoreWarnings true       // false by default
+        quiet true                // false by default
+    }
+
+    // endregion
 }
 
 dependencies {
