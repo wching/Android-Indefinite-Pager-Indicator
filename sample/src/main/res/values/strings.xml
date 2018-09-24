@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Indefinite Pager Indicator Sample</string>
 
-    <string name="main_activity_title">Indefinite Pager\nIndicator</string>
+    <string name="main_activity_title">Indefinite Indicator</string>
     <string name="view_pager">View Pager</string>
     <string name="recyclerview">RecylerView</string>
 
