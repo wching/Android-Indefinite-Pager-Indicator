@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <declare-styleable name="IndefinitePagerIndicator">
         <attr name="dotCount" format="integer" />
         <attr name="fadingDotCount" format="integer" />
@@ -10,5 +9,6 @@
         <attr name="selectedDotColor" format="color" />
         <attr name="dotSeparation" format="dimension" />
         <attr name="supportRTL" format="boolean" />
+        <attr name="verticalSupport" format="boolean" />
     </declare-styleable>
 </resources>
