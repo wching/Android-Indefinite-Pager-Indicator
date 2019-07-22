@@ -278,12 +278,12 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         this.viewPager = viewPager
         this.viewPager?.addOnPageChangeListener(this)
 
-        selectedItemPosition = viewPager?.currentItem!!
+        selectedItemPosition = viewPager?.currentItem ?: 0
     }
 
     private fun getPagerItemCount(): Int = when {
-        recyclerView != null -> recyclerView?.adapter?.itemCount!!
-        viewPager != null -> viewPager?.adapter?.count!!
+        recyclerView != null -> recyclerView?.adapter?.itemCount ?: 0
+        viewPager != null -> viewPager?.adapter?.count ?: 0
         else -> 0
     }
 
