@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import kotlin.math.abs
 
 class IndefinitePagerIndicator @JvmOverloads constructor(
     context: Context,
@@ -206,7 +207,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
      * viewpager/recyclerview has scrolled.
      */
     private fun getRadius(coordinate: Float): Float {
-        val coordinateAbs = Math.abs(coordinate)
+        val coordinateAbs = abs(coordinate)
         // Get the coordinate where dots begin showing as fading dots (x coordinates > half of width of all large dots)
         val largeDotThreshold = dotCount.toFloat() / 2 * getDistanceBetweenTheCenterOfTwoDots()
         return when {
@@ -229,7 +230,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
      * All other dots will be the normal specified dot color.
      */
     private fun getPaint(coordinate: Float): Paint = when {
-        Math.abs(coordinate) < getDistanceBetweenTheCenterOfTwoDots() / 2 -> selectedDotPaint
+        abs(coordinate) < getDistanceBetweenTheCenterOfTwoDots() / 2 -> selectedDotPaint
         else -> dotPaint
     }
 
