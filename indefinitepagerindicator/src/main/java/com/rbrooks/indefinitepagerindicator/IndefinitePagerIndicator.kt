@@ -110,7 +110,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
                 dotSeparationDistancePx
             )
             supportRtl =
-                    typedArray.getBoolean(R.styleable.IndefinitePagerIndicator_supportRTL, false)
+                typedArray.getBoolean(R.styleable.IndefinitePagerIndicator_supportRTL, false)
             verticalSupport = typedArray.getBoolean(
                 R.styleable.IndefinitePagerIndicator_verticalSupport,
                 false
@@ -179,7 +179,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
      */
     private fun getDotCoordinate(pagerPosition: Int): Float =
         (pagerPosition - intermediateSelectedItemPosition) * getDistanceBetweenTheCenterOfTwoDots() +
-                (getDistanceBetweenTheCenterOfTwoDots() * offsetPercent)
+            (getDistanceBetweenTheCenterOfTwoDots() * offsetPercent)
 
     /**
      * Get the y coordinate for a dot.
@@ -216,7 +216,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
             else -> {
                 // Determine how close the dot is to the edge of the view for scaling the size of the dot
                 val percentTowardsEdge = (coordinateAbs - largeDotThreshold) /
-                        (getCalculatedWidth() / 2.01f - largeDotThreshold)
+                    (getCalculatedWidth() / 2.01f - largeDotThreshold)
                 interpolator.getInterpolation(1 - percentTowardsEdge) * dotRadiusPx
             }
         }
