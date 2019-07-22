@@ -3,18 +3,18 @@ package com.rbrooks.indefinitepagerindicatorsample
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import com.google.android.material.tabs.TabLayout
 import com.rbrooks.indefinitepagerindicatorsample.recyclerViewSample.RecyclerViewSampleFragment
 import com.rbrooks.indefinitepagerindicatorsample.util.OnPagerNumberChangeListener
 import com.rbrooks.indefinitepagerindicatorsample.util.PagerNumberPickerDialogPreference
-import com.rbrooks.indefinitepagerindicatorsample.viewPagerSample.RTLViewPagerSampleFragment
+import com.rbrooks.indefinitepagerindicatorsample.rtlViewPagerSample.RTLViewPagerSampleFragment
 import com.rbrooks.indefinitepagerindicatorsample.viewPagerSample.ViewPagerSampleFragment
 import kotlinx.android.synthetic.main.activity_main.toolbar
 
@@ -40,9 +40,11 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener,
 
         sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE)
 
-        setSupportActionBar(toolbar as Toolbar)
-        toolbar?.title = getString(R.string.main_activity_title)
-        toolbar?.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
+        with(toolbar as Toolbar) {
+            setSupportActionBar(this)
+            title = getString(R.string.main_activity_title)
+            setTitleTextColor(ContextCompat.getColor(this@MainActivity, R.color.white))
+        }
 
         bindViews()
         setupFragments()
@@ -94,9 +96,13 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener,
         }
     }
 
-    override fun onTabReselected(tab: TabLayout.Tab?) {}
+    override fun onTabReselected(tab: TabLayout.Tab?) {
+        // Do Nothing
+    }
 
-    override fun onTabUnselected(tab: TabLayout.Tab?) {}
+    override fun onTabUnselected(tab: TabLayout.Tab?) {
+        // Do Nothing
+    }
 
     override fun onPagerNumberChanged() {
         (viewPagerSampleFragment as OnPagerNumberChangeListener).onPagerNumberChanged()

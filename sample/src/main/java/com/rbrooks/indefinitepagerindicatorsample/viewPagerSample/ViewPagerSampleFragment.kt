@@ -1,13 +1,13 @@
 package com.rbrooks.indefinitepagerindicatorsample.viewPagerSample
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
 import com.rbrooks.indefinitepagerindicatorsample.MainActivity
 import com.rbrooks.indefinitepagerindicatorsample.R
@@ -23,20 +23,25 @@ class ViewPagerSampleFragment : Fragment(), OnPagerNumberChangeListener, View.On
     private var pagerAdapter: ViewPagerAdapter? = null
     private var isVerticalEnabled = false
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_view_pager_sample, container, false)
 
-        isVerticalEnabled = context.getSharedPreferences(
-            MainActivity.SHARED_PREFERENCES,
-            AppCompatActivity.MODE_PRIVATE
-        ).getBoolean(
-            MainActivity.isVerticalIndicatorKeyPreference,
-            false
-        )
+        context?.let {
+            isVerticalEnabled = it.getSharedPreferences(
+                MainActivity.SHARED_PREFERENCES,
+                AppCompatActivity.MODE_PRIVATE
+            ).getBoolean(
+                MainActivity.isVerticalIndicatorKeyPreference,
+                false
+            )
 
-        bindViews(view)
-        setupViews()
-
+            bindViews(view)
+            setupViews()
+        }
         return view
     }
 
@@ -49,14 +54,16 @@ class ViewPagerSampleFragment : Fragment(), OnPagerNumberChangeListener, View.On
     }
 
     private fun setupViews() {
-        pagerAdapter = ViewPagerAdapter(context)
-        viewPager.adapter = pagerAdapter
-        if (isVerticalEnabled) {
-            verticalPagerIndicator.attachToViewPager(viewPager)
-            verticalPagerIndicator.visibility = View.VISIBLE
-        } else {
-            pagerIndicator.attachToViewPager(viewPager)
-            pagerIndicator.visibility = View.VISIBLE
+        context?.let {
+            pagerAdapter = ViewPagerAdapter(it)
+            viewPager.adapter = pagerAdapter
+            if (isVerticalEnabled) {
+                verticalPagerIndicator.attachToViewPager(viewPager)
+                verticalPagerIndicator.visibility = View.VISIBLE
+            } else {
+                pagerIndicator.attachToViewPager(viewPager)
+                pagerIndicator.visibility = View.VISIBLE
+            }
         }
 
         previousButton.setOnClickListener(this)
@@ -68,19 +75,23 @@ class ViewPagerSampleFragment : Fragment(), OnPagerNumberChangeListener, View.On
     }
 
     override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.viewpager_previous_button -> {
-                if (viewPager.currentItem == 0) {
-                    viewPager.currentItem = viewPager.adapter.count - 1
-                } else {
-                    viewPager.currentItem = viewPager.currentItem - 1
-                }
-            }
-            R.id.viewpager_next_button -> {
-                if (viewPager.currentItem == viewPager.adapter.count - 1) {
-                    viewPager.currentItem = 0
-                } else {
-                    viewPager.currentItem = viewPager.currentItem + 1
+        with(viewPager) {
+            adapter?.let {
+                when (v?.id) {
+                    R.id.viewpager_previous_button -> {
+                        currentItem = if (currentItem == 0) {
+                            it.count - 1
+                        } else {
+                            currentItem - 1
+                        }
+                    }
+                    R.id.viewpager_next_button -> {
+                        currentItem = if (currentItem == it.count - 1) {
+                            0
+                        } else {
+                            currentItem + 1
+                        }
+                    }
                 }
             }
         }
