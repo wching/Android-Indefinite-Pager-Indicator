@@ -348,7 +348,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
          * Use this percentage to also calculate the offsetPercentage
          * used to scale dots.
          */
-        override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
 
             val view = getMostVisibleChild()
 
@@ -357,7 +357,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
                 offsetPercent = view.left.toFloat() / view.measuredWidth
             }
 
-            with(recyclerView?.layoutManager as LinearLayoutManager) {
+            with(recyclerView.layoutManager as LinearLayoutManager) {
                 val visibleItemPosition =
                     if (dx >= 0) findLastVisibleItemPosition() else findFirstVisibleItemPosition()
 
@@ -405,12 +405,13 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
             }
         }
 
-        private fun setIntermediateSelectedItemPosition(mostVisibleChild: View?) {
-            with(recyclerView?.findContainingViewHolder(mostVisibleChild)?.adapterPosition!!) {
+        private fun setIntermediateSelectedItemPosition(mostVisibleChild: View) {
+
+            recyclerView?.findContainingViewHolder(mostVisibleChild)?.adapterPosition?.let {
                 intermediateSelectedItemPosition = if (isRtl() && !verticalSupport) {
-                    getRTLPosition(this)
+                    getRTLPosition(it)
                 } else {
-                    this
+                    it
                 }
             }
         }
