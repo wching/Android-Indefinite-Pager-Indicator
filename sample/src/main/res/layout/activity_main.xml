@@ -5,13 +5,13 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"/>
 
-    <android.support.design.widget.TabLayout
+    <com.google.android.material.tabs.TabLayout
         android:id="@+id/main_activity_tab_layout"
         style="@style/TabBarTheme"
         android:layout_width="match_parent"
@@ -22,14 +22,23 @@
         app:tabGravity="fill"
         app:tabMode="fixed">
 
-        <android.support.design.widget.TabItem android:text="@string/view_pager"/>
+        <com.google.android.material.tabs.TabItem
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/view_pager"/>
 
-        <android.support.design.widget.TabItem android:text="@string/recyclerview"/>
+        <com.google.android.material.tabs.TabItem
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/recyclerview"/>
 
-        <android.support.design.widget.TabItem android:text="@string/rtl_view_pager"/>
+        <com.google.android.material.tabs.TabItem
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/rtl_view_pager"/>
 
 
-    </android.support.design.widget.TabLayout>
+    </com.google.android.material.tabs.TabLayout>
 
     <FrameLayout
         android:id="@+id/main_activity_fragment_holder"
