@@ -4,16 +4,16 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Paint
-import android.support.annotation.ColorInt
-import android.support.v4.content.ContextCompat
-import android.support.v4.view.ViewCompat
-import android.support.v4.view.ViewPager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.view.View
 import android.view.animation.DecelerateInterpolator
+import androidx.annotation.ColorInt
+import androidx.core.content.ContextCompat.*
+import androidx.core.view.ViewCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 
 class IndefinitePagerIndicator @JvmOverloads constructor(
     context: Context,
