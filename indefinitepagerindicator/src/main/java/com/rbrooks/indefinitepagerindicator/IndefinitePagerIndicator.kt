@@ -256,11 +256,15 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         viewPager?.removeOnPageChangeListener(this)
         viewPager = null
 
-        this.recyclerView?.removeOnScrollListener(internalRecyclerScrollListener)
+        this.recyclerView?.removeOnScrollListener(
+            internalRecyclerScrollListener as RecyclerView.OnScrollListener
+        )
 
         this.recyclerView = recyclerView
         internalRecyclerScrollListener = InternalRecyclerScrollListener()
-        this.recyclerView?.addOnScrollListener(internalRecyclerScrollListener)
+        this.recyclerView?.addOnScrollListener(
+            internalRecyclerScrollListener as RecyclerView.OnScrollListener
+        )
     }
 
     /**
@@ -270,7 +274,9 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
      * If other ViewPager previously attached, remove reference to this class (page change listener).
      */
     fun attachToViewPager(viewPager: ViewPager?) {
-        recyclerView?.removeOnScrollListener(internalRecyclerScrollListener)
+        recyclerView?.removeOnScrollListener(
+            internalRecyclerScrollListener as RecyclerView.OnScrollListener
+        )
         recyclerView = null
 
         this.viewPager?.removeOnPageChangeListener(this)
