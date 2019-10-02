@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:indefinite_pager_indicator="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    xmlns:indefinite_pager_indicator="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
         android:id="@+id/recyclerview_pager_indicator_horizontal"
@@ -15,17 +15,17 @@
         android:visibility="gone"
         indefinite_pager_indicator:dotColor="@color/colorPrimaryDark"
         indefinite_pager_indicator:selectedDotColor="@color/colorPrimary"
-        tools:background="@color/colorPrimary"/>
+        tools:background="@color/colorPrimary" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="30dp"/>
+            android:layout_margin="30dp" />
 
         <com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
             android:id="@+id/recyclerview_pager_indicator"
@@ -38,7 +38,7 @@
             indefinite_pager_indicator:dotColor="@android:color/holo_red_dark"
             indefinite_pager_indicator:selectedDotColor="@android:color/holo_red_dark"
             indefinite_pager_indicator:verticalSupport="true"
-            tools:background="@color/cardview_dark_background"/>
+            tools:background="@color/cardview_dark_background" />
 
     </FrameLayout>
 

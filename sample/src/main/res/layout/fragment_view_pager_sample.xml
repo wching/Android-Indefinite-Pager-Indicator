@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:indefinite_pager_indicator="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+    xmlns:indefinite_pager_indicator="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
         android:id="@+id/viewpager_pager_indicator"
@@ -13,9 +13,9 @@
         android:layout_margin="24dp"
         indefinite_pager_indicator:dotColor="@color/colorPrimaryDark"
         indefinite_pager_indicator:selectedDotColor="@color/colorPrimary"
-        tools:background="@color/cardview_dark_background"/>
+        tools:background="@color/cardview_dark_background" />
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_toEndOf="@+id/viewpager_vertical_pager_indicator"
-        android:layout_toRightOf="@+id/viewpager_vertical_pager_indicator"/>
+        android:layout_toRightOf="@+id/viewpager_vertical_pager_indicator" />
 
     <com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
         android:id="@+id/viewpager_vertical_pager_indicator"
@@ -41,7 +41,7 @@
         indefinite_pager_indicator:dotColor="@android:color/holo_red_dark"
         indefinite_pager_indicator:selectedDotColor="@android:color/holo_red_dark"
         indefinite_pager_indicator:verticalSupport="true"
-        tools:background="@color/cardview_dark_background"/>
+        tools:background="@color/cardview_dark_background" />
 
     <RelativeLayout
         android:id="@+id/navigation_buttons_layout"
@@ -53,21 +53,21 @@
         android:elevation="4dp"
         android:orientation="horizontal">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/viewpager_previous_button"
             style="@style/PrimaryFlatButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="@string/previous"/>
+            android:text="@string/previous" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/viewpager_next_button"
             style="@style/PrimaryFlatButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="@string/next"/>
+            android:text="@string/next" />
     </RelativeLayout>
 
 </RelativeLayout>

@@ -37,15 +37,15 @@ class PagerNumberPickerDialogPreference : DialogFragment() {
         setupViews()
 
         return AlertDialog.Builder(activity)
-                .setTitle(R.string.pager_number_picker_dialog_title)
-                .setView(view)
-                .setPositiveButton(R.string.pager_number_picker_dialog_positive_text, { dialog, which ->
-                    preferences.edit().putInt(KEY_NUM_PAGES, numberPicker.value).apply()
-                    (activity as OnPagerNumberChangeListener).onPagerNumberChanged()
-                    dismiss()
-                })
-                .setNegativeButton(R.string.pager_number_picker_dialog_negative_text, { dialog, which -> dismiss() })
-                .create()
+            .setTitle(R.string.pager_number_picker_dialog_title)
+            .setView(view)
+            .setPositiveButton(R.string.pager_number_picker_dialog_positive_text) { dialog, which ->
+                preferences.edit().putInt(KEY_NUM_PAGES, numberPicker.value).apply()
+                (activity as OnPagerNumberChangeListener).onPagerNumberChanged()
+                dismiss()
+            }
+            .setNegativeButton(R.string.pager_number_picker_dialog_negative_text) { dialog, which -> dismiss() }
+            .create()
     }
 
     private fun bindViews(view: View) {

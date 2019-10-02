@@ -1,14 +1,13 @@
 package com.rbrooks.indefinitepagerindicatorsample.recyclerViewSample
 
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
 import com.rbrooks.indefinitepagerindicatorsample.MainActivity
 import com.rbrooks.indefinitepagerindicatorsample.MainActivity.Companion.isVerticalIndicatorKeyPreference
@@ -24,17 +23,10 @@ class RecyclerViewSampleFragment : Fragment(), OnPagerNumberChangeListener {
 
     private var recyclerViewAdapter: PhotoItemRecyclerAdapter? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_recyclerview_sample, container, false)
 
-        isVerticalEnabled = context.getSharedPreferences(
-            MainActivity.SHARED_PREFERENCES,
-            AppCompatActivity.MODE_PRIVATE
-        ).getBoolean(
+        isVerticalEnabled = requireContext().getSharedPreferences(MainActivity.SHARED_PREFERENCES, AppCompatActivity.MODE_PRIVATE).getBoolean(
             isVerticalIndicatorKeyPreference,
             false
         )
@@ -54,10 +46,9 @@ class RecyclerViewSampleFragment : Fragment(), OnPagerNumberChangeListener {
     }
 
     private fun setupViews() {
-        recyclerViewAdapter = PhotoItemRecyclerAdapter(context)
+        recyclerViewAdapter = PhotoItemRecyclerAdapter(requireContext())
         recyclerView.adapter = recyclerViewAdapter
-        recyclerView.layoutManager =
-                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         if (isVerticalEnabled) {
             pagerIndicator.attachToRecyclerView(recyclerView)
             pagerIndicator.visibility = View.VISIBLE

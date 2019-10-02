@@ -49,6 +49,10 @@ android {
     }
 
     // endregion
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -63,7 +67,13 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0-alpha10'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.duolingo.open:rtl-viewpager:1.0.2'
+    implementation 'androidx.core:core-ktx:1.1.0'
 
     // Library dependency
     implementation project(':indefinitepagerindicator')
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'androidx.test:core:1.2.0'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

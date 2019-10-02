@@ -3,24 +3,23 @@ package com.rbrooks.indefinitepagerindicatorsample
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import com.google.android.material.tabs.TabLayout
 import com.rbrooks.indefinitepagerindicatorsample.recyclerViewSample.RecyclerViewSampleFragment
+import com.rbrooks.indefinitepagerindicatorsample.rtlViewPagerSample.RTLViewPagerSampleFragment
 import com.rbrooks.indefinitepagerindicatorsample.util.OnPagerNumberChangeListener
 import com.rbrooks.indefinitepagerindicatorsample.util.PagerNumberPickerDialogPreference
-import com.rbrooks.indefinitepagerindicatorsample.viewPagerSample.RTLViewPagerSampleFragment
 import com.rbrooks.indefinitepagerindicatorsample.viewPagerSample.ViewPagerSampleFragment
-import kotlinx.android.synthetic.main.activity_main.toolbar
+import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener,
-    OnPagerNumberChangeListener {
+class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, OnPagerNumberChangeListener {
 
     companion object {
         const val SHARED_PREFERENCES = "SHARED_PREFERENCES"
@@ -41,8 +40,8 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener,
         sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE)
 
         setSupportActionBar(toolbar as Toolbar)
-        toolbar?.title = getString(R.string.main_activity_title)
-        toolbar?.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
+        toolbar.title = getString(R.string.main_activity_title)
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
 
         bindViews()
         setupFragments()
@@ -136,10 +135,8 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener,
             ).commit()
 
     private fun restartApp() {
-        baseContext.packageManager
-            .getLaunchIntentForPackage(baseContext.packageName)
-            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).run {
-                startActivity(this)
-            }
+        baseContext.packageManager.getLaunchIntentForPackage(baseContext.packageName)!!.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).run {
+            startActivity(this)
+        }
     }
 }

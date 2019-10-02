@@ -1,14 +1,14 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="NoActionBarActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="NoActionBarActivityTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:alertDialogTheme">@style/AlertDialogTheme</item>
     </style>
 
-    <style name="ActionBarActivityTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="ActionBarActivityTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -28,11 +28,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:colorAccent">@color/colorPrimary</item>
+    <style name="AlertDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
-    <style name="PrimaryFlatButton" parent="Widget.AppCompat.Button.Borderless.Colored">
+    <style name="PrimaryFlatButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
