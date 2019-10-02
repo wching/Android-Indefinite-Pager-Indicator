@@ -100,6 +100,12 @@ dependencies {
 }
 
 if (project.rootProject.file('../gradle/bintray_installer.gradle').exists()) {
+
+    plugins {
+        id "com.github.dcendents.android-maven" version "2.1"
+        id "com.jfrog.bintray" version "1.8.4"
+    }
+
     apply from: '../gradle/bintray_installer.gradle'
     apply from: '../gradle/maven_installer.gradle'
 }

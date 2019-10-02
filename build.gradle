@@ -10,11 +10,6 @@ buildscript {
     }
 }
 
-plugins {
-    id "com.github.dcendents.android-maven" version "2.1"
-    id "com.jfrog.bintray" version "1.8.4"
-}
-
 allprojects {
     repositories {
         google()
