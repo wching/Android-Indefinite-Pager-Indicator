@@ -32,7 +32,7 @@
         <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
-    <style name="PrimaryFlatButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+    <style name="PrimaryFlatButton" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 

@@ -16,6 +16,7 @@ import com.rbrooks.indefinitepagerindicatorsample.rtlViewPagerSample.RTLViewPage
 import com.rbrooks.indefinitepagerindicatorsample.util.OnPagerNumberChangeListener
 import com.rbrooks.indefinitepagerindicatorsample.util.PagerNumberPickerDialogPreference
 import com.rbrooks.indefinitepagerindicatorsample.viewPagerSample.ViewPagerSampleFragment
+import com.rbrooks.indefinitepagerindicatorsample.viewpager2.ViewPager2Fragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, OnPag
     private lateinit var viewPagerSampleFragment: ViewPagerSampleFragment
     private lateinit var recyclerViewSampleFragment: RecyclerViewSampleFragment
     private lateinit var rtlViewPagerSampleFragment: RTLViewPagerSampleFragment
+    private lateinit var viewPager2Fragment: ViewPager2Fragment
     private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,6 +92,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, OnPag
             0 -> setFragment(viewPagerSampleFragment)
             1 -> setFragment(recyclerViewSampleFragment)
             2 -> setFragment(rtlViewPagerSampleFragment)
+            3 -> setFragment(viewPager2Fragment)
         }
     }
 
@@ -101,6 +104,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, OnPag
         (viewPagerSampleFragment as OnPagerNumberChangeListener).onPagerNumberChanged()
         (recyclerViewSampleFragment as OnPagerNumberChangeListener).onPagerNumberChanged()
         (rtlViewPagerSampleFragment as OnPagerNumberChangeListener).onPagerNumberChanged()
+        (viewPager2Fragment as OnPagerNumberChangeListener).onPagerNumberChanged()
     }
 
     // Private Api
@@ -119,20 +123,18 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, OnPag
         viewPagerSampleFragment = ViewPagerSampleFragment()
         recyclerViewSampleFragment = RecyclerViewSampleFragment()
         rtlViewPagerSampleFragment = RTLViewPagerSampleFragment()
+        viewPager2Fragment = ViewPager2Fragment()
     }
 
     private fun setFragment(fragment: Fragment) {
         // TODO: Set custom animations depending on which one
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.main_activity_fragment_holder, fragment).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.main_activity_fragment_holder, fragment).commit()
     }
 
     private fun saveNewActionSelection(isVerticalSelected: Boolean) =
         sharedPreferences.edit()
-            .putBoolean(
-                isVerticalIndicatorKeyPreference,
-                isVerticalSelected
-            ).commit()
+            .putBoolean(isVerticalIndicatorKeyPreference, isVerticalSelected)
+            .commit()
 
     private fun restartApp() {
         baseContext.packageManager.getLaunchIntentForPackage(baseContext.packageName)!!.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).run {

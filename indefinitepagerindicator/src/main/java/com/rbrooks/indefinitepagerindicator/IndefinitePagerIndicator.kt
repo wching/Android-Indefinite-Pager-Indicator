@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import kotlin.math.abs
 
 class IndefinitePagerIndicator @JvmOverloads constructor(
@@ -38,7 +39,9 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     private var recyclerView: RecyclerView? = null
     private var viewPager: ViewPager? = null
+    private var viewPager2: ViewPager2? = null
     private var internalRecyclerScrollListener: InternalRecyclerScrollListener? = null
+    private var internalPageChangeCallback: InternalPageChangeCallback? = null
     private val interpolator = DecelerateInterpolator()
 
     private var dotCount = DEFAULT_DOT_COUNT
@@ -78,43 +81,35 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     init {
         attrs?.let {
+
             val typedArray = context.theme.obtainStyledAttributes(
                 attrs,
                 R.styleable.IndefinitePagerIndicator,
                 0,
                 0
             )
-            dotCount = typedArray.getInteger(
-                R.styleable.IndefinitePagerIndicator_dotCount,
-                DEFAULT_DOT_COUNT
-            )
-            fadingDotCount = typedArray.getInt(
-                R.styleable.IndefinitePagerIndicator_fadingDotCount,
-                DEFAULT_FADING_DOT_COUNT
-            )
-            dotRadiusPx = typedArray.getDimensionPixelSize(
-                R.styleable.IndefinitePagerIndicator_dotRadius,
-                dotRadiusPx
-            )
-            selectedDotRadiusPx = typedArray.getDimensionPixelSize(
-                R.styleable.IndefinitePagerIndicator_selectedDotRadius,
-                selectedDotRadiusPx
-            )
-            dotColor = typedArray.getColor(R.styleable.IndefinitePagerIndicator_dotColor, dotColor)
-            selectedDotColor = typedArray.getColor(
-                R.styleable.IndefinitePagerIndicator_selectedDotColor,
-                selectedDotColor
-            )
-            dotSeparationDistancePx = typedArray.getDimensionPixelSize(
-                R.styleable.IndefinitePagerIndicator_dotSeparation,
-                dotSeparationDistancePx
-            )
-            supportRtl =
-                    typedArray.getBoolean(R.styleable.IndefinitePagerIndicator_supportRTL, false)
-            verticalSupport = typedArray.getBoolean(
-                R.styleable.IndefinitePagerIndicator_verticalSupport,
-                false
-            )
+
+            // error checking
+            try {
+
+                with(typedArray) {
+                    dotCount = getInteger(R.styleable.IndefinitePagerIndicator_dotCount, DEFAULT_DOT_COUNT)
+                    fadingDotCount = getInt(R.styleable.IndefinitePagerIndicator_fadingDotCount, DEFAULT_FADING_DOT_COUNT)
+                    dotRadiusPx = getDimensionPixelSize(R.styleable.IndefinitePagerIndicator_dotRadius, dotRadiusPx)
+                    selectedDotRadiusPx = getDimensionPixelSize(R.styleable.IndefinitePagerIndicator_selectedDotRadius, selectedDotRadiusPx)
+                    dotColor = getColor(R.styleable.IndefinitePagerIndicator_dotColor, dotColor)
+                    selectedDotColor = getColor(R.styleable.IndefinitePagerIndicator_selectedDotColor, selectedDotColor)
+                    dotSeparationDistancePx = getDimensionPixelSize(R.styleable.IndefinitePagerIndicator_dotSeparation, dotSeparationDistancePx)
+                    supportRtl = getBoolean(R.styleable.IndefinitePagerIndicator_supportRTL, false)
+                    verticalSupport = getBoolean(R.styleable.IndefinitePagerIndicator_verticalSupport, false)
+                }
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            } finally {
+                // don't forget to recycle typed attributes
+                typedArray.recycle()
+            }
         }
 
         selectedDotPaint.apply {
@@ -283,9 +278,31 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         selectedItemPosition = viewPager.currentItem
     }
 
+    /**
+     * Attach a ViewPager to the Pager Indicator.
+     *
+     * If RecyclerView previously attached, scroll listener will be removed and RV set to null.
+     * If other ViewPager previously attached, remove reference to this class (page change listener).
+     */
+    fun attachToViewPager(viewPager2: ViewPager2) {
+
+        internalRecyclerScrollListener?.let { recyclerView?.removeOnScrollListener(it) }
+
+        this.recyclerView = null
+
+        internalPageChangeCallback?.let { this.viewPager2?.unregisterOnPageChangeCallback(it) }
+
+        this.viewPager2 = viewPager2
+        internalPageChangeCallback = InternalPageChangeCallback()
+        this.viewPager2?.registerOnPageChangeCallback(internalPageChangeCallback!!)
+
+        selectedItemPosition = viewPager2.currentItem
+    }
+
     private fun getPagerItemCount(): Int = when {
         recyclerView != null -> recyclerView?.adapter?.itemCount!!
         viewPager != null -> viewPager?.adapter?.count!!
+        viewPager2 != null -> viewPager2?.adapter?.itemCount!!
         else -> 0
     }
 
@@ -328,6 +345,18 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     override fun onPageScrollStateChanged(state: Int) {
         // Not implemented
+    }
+
+    /**
+     * forwarding viewpager 2 events to page indicator's [ViewPager.OnPageChangeListener] overrides
+     */
+    internal inner class InternalPageChangeCallback : ViewPager2.OnPageChangeCallback() {
+
+        override fun onPageScrollStateChanged(state: Int) = this@IndefinitePagerIndicator.onPageScrollStateChanged(state)
+
+        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) = this@IndefinitePagerIndicator.onPageScrolled(position, positionOffset, positionOffsetPixels)
+
+        override fun onPageSelected(position: Int) = this@IndefinitePagerIndicator.onPageSelected(position)
     }
 
     /**
