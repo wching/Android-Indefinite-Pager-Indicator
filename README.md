@@ -1,4 +1,4 @@
-# Android Indefinite Pager Indicator
+# Android Indefinite Pager Indicator also: [![](https://jitpack.io/v/kibotu/Android-Indefinite-Pager-Indicator.svg)](https://jitpack.io/#kibotu/Android-Indefinite-Pager-Indicator)
 
 A lightweight, plug-and-play indefinite pager indicator for RecyclerViews &amp; ViewPagers.
 
