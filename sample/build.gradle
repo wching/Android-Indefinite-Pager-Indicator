@@ -60,7 +60,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     // Support libs
-    implementation "androidx.multidex:multidex:2.0.1"
     implementation "androidx.appcompat:appcompat:1.1.0"
     implementation "androidx.appcompat:appcompat-resources:1.1.0"
     implementation 'androidx.recyclerview:recyclerview:1.1.0-beta04'
