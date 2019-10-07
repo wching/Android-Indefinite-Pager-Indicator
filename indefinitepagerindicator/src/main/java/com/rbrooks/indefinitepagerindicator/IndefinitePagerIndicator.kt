@@ -1,9 +1,11 @@
 package com.rbrooks.indefinitepagerindicator
 
+import android.annotation.TargetApi
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.os.Build
 import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.view.View
@@ -17,11 +19,21 @@ import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import kotlin.math.abs
 
-class IndefinitePagerIndicator @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyle: Int = 0
-) : View(context, attrs, defStyle), ViewPager.OnPageChangeListener {
+class IndefinitePagerIndicator : View, ViewPager.OnPageChangeListener {
+
+    constructor(context: Context?) : super(context)
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+        init(attrs ?: return)
+    }
+
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        init(attrs ?: return, defStyleAttr)
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {
+        init(attrs ?: return, defStyleAttr, defStyleRes)
+    }
 
     companion object {
 
@@ -79,39 +91,39 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
      */
     private var offsetPercent: Float = 0f
 
-    init {
-        attrs?.let {
+    private fun init(attrs: AttributeSet, defStyleAttr: Int = 0, defStyleRes: Int = 0) {
 
-            val typedArray = context.theme.obtainStyledAttributes(
-                attrs,
-                R.styleable.IndefinitePagerIndicator,
-                0,
-                0
-            )
+        val typedArray = context.theme.obtainStyledAttributes(
+            attrs,
+            R.styleable.IndefinitePagerIndicator,
+            defStyleAttr,
+            defStyleRes
+        )
 
-            // error checking
-            try {
+        // error checking
+        try {
 
-                with(typedArray) {
-                    dotCount = getInteger(R.styleable.IndefinitePagerIndicator_dotCount, DEFAULT_DOT_COUNT)
-                    fadingDotCount = getInt(R.styleable.IndefinitePagerIndicator_fadingDotCount, DEFAULT_FADING_DOT_COUNT)
-                    dotRadiusPx = getDimensionPixelSize(R.styleable.IndefinitePagerIndicator_dotRadius, dotRadiusPx)
-                    selectedDotRadiusPx = getDimensionPixelSize(R.styleable.IndefinitePagerIndicator_selectedDotRadius, selectedDotRadiusPx)
-                    dotColor = getColor(R.styleable.IndefinitePagerIndicator_dotColor, dotColor)
-                    selectedDotColor = getColor(R.styleable.IndefinitePagerIndicator_selectedDotColor, selectedDotColor)
-                    dotSeparationDistancePx = getDimensionPixelSize(R.styleable.IndefinitePagerIndicator_dotSeparation, dotSeparationDistancePx)
-                    supportRtl = getBoolean(R.styleable.IndefinitePagerIndicator_supportRTL, false)
-                    verticalSupport = getBoolean(R.styleable.IndefinitePagerIndicator_verticalSupport, false)
-                }
-
-            } catch (e: Exception) {
-                e.printStackTrace()
-            } finally {
-                // don't forget to recycle typed attributes
-                typedArray.recycle()
+            with(typedArray) {
+                dotCount = getInteger(R.styleable.IndefinitePagerIndicator_dotCount, DEFAULT_DOT_COUNT)
+                fadingDotCount = getInt(R.styleable.IndefinitePagerIndicator_fadingDotCount, DEFAULT_FADING_DOT_COUNT)
+                dotRadiusPx = getDimensionPixelSize(R.styleable.IndefinitePagerIndicator_dotRadius, dotRadiusPx)
+                selectedDotRadiusPx = getDimensionPixelSize(R.styleable.IndefinitePagerIndicator_selectedDotRadius, selectedDotRadiusPx)
+                dotColor = getColor(R.styleable.IndefinitePagerIndicator_dotColor, dotColor)
+                selectedDotColor = getColor(R.styleable.IndefinitePagerIndicator_selectedDotColor, selectedDotColor)
+                dotSeparationDistancePx = getDimensionPixelSize(R.styleable.IndefinitePagerIndicator_dotSeparation, dotSeparationDistancePx)
+                supportRtl = getBoolean(R.styleable.IndefinitePagerIndicator_supportRTL, false)
+                verticalSupport = getBoolean(R.styleable.IndefinitePagerIndicator_verticalSupport, false)
             }
-        }
 
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            // don't forget to recycle typed attributes
+            typedArray.recycle()
+        }
+    }
+
+    init {
         selectedDotPaint.apply {
             style = Paint.Style.FILL
             color = selectedDotColor
