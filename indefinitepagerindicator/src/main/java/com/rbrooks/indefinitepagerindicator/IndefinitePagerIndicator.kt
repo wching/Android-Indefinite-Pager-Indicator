@@ -254,8 +254,9 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         internalRecyclerScrollListener?.let { this.recyclerView?.removeOnScrollListener(it) }
 
         this.recyclerView = recyclerView
-        internalRecyclerScrollListener = InternalRecyclerScrollListener()
-        this.recyclerView?.addOnScrollListener(internalRecyclerScrollListener!!)
+        internalRecyclerScrollListener = InternalRecyclerScrollListener().apply {
+            recyclerView.addOnScrollListener(this)
+        }
     }
 
     /**
@@ -293,16 +294,17 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         internalPageChangeCallback?.let { this.viewPager2?.unregisterOnPageChangeCallback(it) }
 
         this.viewPager2 = viewPager2
-        internalPageChangeCallback = InternalPageChangeCallback()
-        this.viewPager2?.registerOnPageChangeCallback(internalPageChangeCallback!!)
+        internalPageChangeCallback = InternalPageChangeCallback().apply {
+            viewPager2.registerOnPageChangeCallback(this)
+        }
 
         selectedItemPosition = viewPager2.currentItem
     }
 
     private fun getPagerItemCount(): Int = when {
-        recyclerView != null -> recyclerView?.adapter?.itemCount!!
-        viewPager != null -> viewPager?.adapter?.count!!
-        viewPager2 != null -> viewPager2?.adapter?.itemCount!!
+        recyclerView != null -> recyclerView?.adapter?.itemCount ?: 0
+        viewPager != null -> viewPager?.adapter?.count ?: 0
+        viewPager2 != null -> viewPager2?.adapter?.itemCount ?: 0
         else -> 0
     }
 
@@ -410,7 +412,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         private fun getMostVisibleChild(): View? {
             var mostVisibleChild: View? = null
             var mostVisibleChildPercent = 0f
-            for (i in recyclerView?.layoutManager?.childCount!! - 1 downTo 0) {
+            for (i in (recyclerView?.layoutManager?.childCount ?: 0 - 1).coerceAtLeast(0) downTo 0) {
                 val child = recyclerView?.layoutManager?.getChildAt(i)
                 if (child != null) {
                     val percentVisible = calculatePercentVisible(child)
@@ -437,7 +439,13 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         }
 
         private fun setIntermediateSelectedItemPosition(mostVisibleChild: View) {
-            with(recyclerView?.findContainingViewHolder(mostVisibleChild)?.adapterPosition!!) {
+            with(recyclerView?.findContainingViewHolder(mostVisibleChild)?.adapterPosition) {
+
+                // we should probably not do anything if we have no adapter position,
+                // however we could potentially work with '0' here as well
+                if (this == null)
+                    return@with
+
                 intermediateSelectedItemPosition = if (isRtl() && !verticalSupport) {
                     getRTLPosition(this)
                 } else {

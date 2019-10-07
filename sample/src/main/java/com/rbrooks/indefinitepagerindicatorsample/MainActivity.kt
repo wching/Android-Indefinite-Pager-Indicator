@@ -137,7 +137,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, OnPag
             .commit()
 
     private fun restartApp() {
-        baseContext.packageManager.getLaunchIntentForPackage(baseContext.packageName)!!.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).run {
+        baseContext.packageManager.getLaunchIntentForPackage(baseContext.packageName)?.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).run {
             startActivity(this)
         }
     }

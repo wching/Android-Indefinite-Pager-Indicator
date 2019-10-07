@@ -11,6 +11,8 @@ import androidx.viewpager.widget.ViewPager
 import com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
 import com.rbrooks.indefinitepagerindicatorsample.MainActivity
 import com.rbrooks.indefinitepagerindicatorsample.R
+import com.rbrooks.indefinitepagerindicatorsample.scrollToNextPage
+import com.rbrooks.indefinitepagerindicatorsample.scrollToPreviousPage
 import com.rbrooks.indefinitepagerindicatorsample.util.OnPagerNumberChangeListener
 
 class ViewPagerSampleFragment : Fragment(), OnPagerNumberChangeListener, View.OnClickListener {
@@ -65,20 +67,8 @@ class ViewPagerSampleFragment : Fragment(), OnPagerNumberChangeListener, View.On
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.viewpager_previous_button -> {
-                if (viewPager.currentItem == 0) {
-                    viewPager.currentItem = viewPager.adapter!!.count - 1
-                } else {
-                    viewPager.currentItem = viewPager.currentItem - 1
-                }
-            }
-            R.id.viewpager_next_button -> {
-                if (viewPager.currentItem == viewPager.adapter!!.count - 1) {
-                    viewPager.currentItem = 0
-                } else {
-                    viewPager.currentItem = viewPager.currentItem + 1
-                }
-            }
+            R.id.viewpager_previous_button -> viewPager.scrollToPreviousPage()
+            R.id.viewpager_next_button -> viewPager.scrollToNextPage()
         }
     }
 }
