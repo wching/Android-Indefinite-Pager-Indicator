@@ -2,23 +2,23 @@ package com.rbrooks.indefinitepagerindicatorsample.util
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.app.DialogFragment
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.View
 import android.widget.NumberPicker
+import androidx.fragment.app.DialogFragment
 import com.rbrooks.indefinitepagerindicatorsample.R
 
 
 class PagerNumberPickerDialogPreference : DialogFragment() {
 
     companion object {
-        val KEY_NUM_PAGES = "num_pages"
+        const val KEY_NUM_PAGES = "num_pages"
 
-        val MIN_PAGES = 0
-        val MAX_PAGES = PhotoItem.values().size
-        val DEFAULT_PAGES = 3
+        private const val MIN_PAGES = 0
+        private val MAX_PAGES = PhotoItem.values().size
+        const val DEFAULT_PAGES = 3
     }
 
     private lateinit var numberPicker: NumberPicker
@@ -37,15 +37,15 @@ class PagerNumberPickerDialogPreference : DialogFragment() {
         setupViews()
 
         return AlertDialog.Builder(activity)
-                .setTitle(R.string.pager_number_picker_dialog_title)
-                .setView(view)
-                .setPositiveButton(R.string.pager_number_picker_dialog_positive_text, { dialog, which ->
-                    preferences.edit().putInt(KEY_NUM_PAGES, numberPicker.value).apply()
-                    (activity as OnPagerNumberChangeListener).onPagerNumberChanged()
-                    dismiss()
-                })
-                .setNegativeButton(R.string.pager_number_picker_dialog_negative_text, { dialog, which -> dismiss() })
-                .create()
+            .setTitle(R.string.pager_number_picker_dialog_title)
+            .setView(view)
+            .setPositiveButton(R.string.pager_number_picker_dialog_positive_text) { _, _ ->
+                preferences.edit().putInt(KEY_NUM_PAGES, numberPicker.value).apply()
+                (activity as OnPagerNumberChangeListener).onPagerNumberChanged()
+                dismiss()
+            }
+            .setNegativeButton(R.string.pager_number_picker_dialog_negative_text) { _, _ -> dismiss() }
+            .create()
     }
 
     private fun bindViews(view: View) {
