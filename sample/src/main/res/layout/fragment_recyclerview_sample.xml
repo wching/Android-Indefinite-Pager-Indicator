@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:indefinite_pager_indicator="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    xmlns:indefinite_pager_indicator="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
         android:id="@+id/recyclerview_pager_indicator_horizontal"
@@ -15,7 +15,7 @@
         android:visibility="gone"
         indefinite_pager_indicator:dotColor="@color/colorPrimaryDark"
         indefinite_pager_indicator:selectedDotColor="@color/colorPrimary"
-        tools:background="@color/colorPrimary"/>
+        tools:background="@color/colorPrimary" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -25,20 +25,21 @@
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="30dp"/>
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:padding="30dp" />
 
         <com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
             android:id="@+id/recyclerview_pager_indicator"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:visibility="gone"
             indefinite_pager_indicator:dotColor="@android:color/holo_red_dark"
             indefinite_pager_indicator:selectedDotColor="@android:color/holo_red_dark"
-            indefinite_pager_indicator:verticalSupport="true"
-            tools:background="@color/cardview_dark_background"/>
+            indefinite_pager_indicator:verticalSupport="true" />
 
     </FrameLayout>
 
