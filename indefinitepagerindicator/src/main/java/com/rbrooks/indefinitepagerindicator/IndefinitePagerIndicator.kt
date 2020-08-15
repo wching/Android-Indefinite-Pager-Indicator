@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 
 class IndefinitePagerIndicator @JvmOverloads constructor(
     context: Context,
@@ -38,7 +39,9 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     private var recyclerView: RecyclerView? = null
     private var viewPager: ViewPager? = null
+    private var viewPager2: ViewPager2? = null
     private var internalRecyclerScrollListener: InternalRecyclerScrollListener? = null
+    private var internalPageChangeCallback: InternalPageChangeCallback? = null
     private val interpolator = DecelerateInterpolator()
 
     private var dotCount = DEFAULT_DOT_COUNT
@@ -250,16 +253,10 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     /**
      * Attach a RecyclerView to the Pager Indicator.
      *
-     * If ViewPager previously attached, remove this class (page change listener) and set to null.
-     * If other RecyclerView previously attached, remove internal scroll listener.
+     * Any previously attached source will be detached.
      */
     fun attachToRecyclerView(recyclerView: RecyclerView?) {
-        viewPager?.removeOnPageChangeListener(this)
-        viewPager = null
-
-        internalRecyclerScrollListener?.let {
-            this.recyclerView?.removeOnScrollListener(it)
-        }
+        detachSources()
 
         this.recyclerView = recyclerView
 
@@ -272,16 +269,10 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     /**
      * Attach a ViewPager to the Pager Indicator.
      *
-     * If RecyclerView previously attached, scroll listener will be removed and RV set to null.
-     * If other ViewPager previously attached, remove reference to this class (page change listener).
+     * Any previously attached source will be detached.
      */
     fun attachToViewPager(viewPager: ViewPager?) {
-        internalRecyclerScrollListener?.let {
-            recyclerView?.removeOnScrollListener(it)
-        }
-        recyclerView = null
-
-        this.viewPager?.removeOnPageChangeListener(this)
+        detachSources()
 
         this.viewPager = viewPager
         this.viewPager?.addOnPageChangeListener(this)
@@ -289,9 +280,44 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         selectedItemPosition = viewPager?.currentItem!!
     }
 
+    /**
+     * Attach a ViewPager2 to the Pager Indicator.
+     *
+     * Any previously attached source will be detached.
+     */
+    fun attachToViewPager2(viewPager2: ViewPager2) {
+        detachSources()
+
+        this.viewPager2 = viewPager2
+
+        InternalPageChangeCallback().let {
+            internalPageChangeCallback = it
+            this.viewPager2?.registerOnPageChangeCallback(it)
+        }
+
+        selectedItemPosition = this.viewPager2?.currentItem!!
+    }
+
+    private fun detachSources() {
+        internalRecyclerScrollListener?.let {
+            recyclerView?.removeOnScrollListener(it)
+        }
+
+        this.viewPager?.removeOnPageChangeListener(this)
+
+        internalPageChangeCallback?.let {
+            viewPager2?.unregisterOnPageChangeCallback(it)
+        }
+
+        recyclerView = null
+        viewPager = null
+        viewPager2 = null
+    }
+
     private fun getPagerItemCount(): Int = when {
         recyclerView != null -> recyclerView?.adapter?.itemCount!!
         viewPager != null -> viewPager?.adapter?.count!!
+        viewPager2 != null -> viewPager2?.adapter?.itemCount!!
         else -> 0
     }
 
@@ -421,6 +447,17 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
                     position
                 }
             }
+        }
+    }
+
+    internal inner class InternalPageChangeCallback : ViewPager2.OnPageChangeCallback() {
+
+        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            this@IndefinitePagerIndicator.onPageScrolled(position, positionOffset, positionOffsetPixels)
+        }
+
+        override fun onPageSelected(position: Int) {
+            this@IndefinitePagerIndicator.onPageSelected(position)
         }
     }
 }
