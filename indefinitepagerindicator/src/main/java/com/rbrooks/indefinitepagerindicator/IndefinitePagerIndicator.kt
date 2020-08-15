@@ -9,6 +9,7 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import androidx.annotation.ColorInt
+import androidx.annotation.Keep
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 
+@Keep
 class IndefinitePagerIndicator @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
