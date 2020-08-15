@@ -14,6 +14,7 @@ import com.rbrooks.indefinitepagerindicatorsample.R
 import com.rbrooks.indefinitepagerindicatorsample.util.OnPagerNumberChangeListener
 
 class ViewPagerSampleFragment : Fragment(), OnPagerNumberChangeListener, View.OnClickListener {
+
     private lateinit var viewPager: ViewPager
 
     private lateinit var pagerIndicator: IndefinitePagerIndicator

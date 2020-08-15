@@ -3,6 +3,7 @@
 
     <string name="main_activity_title">Indefinite Indicator</string>
     <string name="view_pager">View Pager</string>
+    <string name="view_pager2">View Pager 2</string>
     <string name="recyclerview">RecylerView</string>
 
     <string name="pager_number_picker_dialog_title">Number of Pages in RecyclerView/View Pager</string>
