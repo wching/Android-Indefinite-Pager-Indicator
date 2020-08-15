@@ -136,10 +136,11 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener,
             ).commit()
 
     private fun restartApp() {
-        baseContext.packageManager
+        val intent = baseContext.packageManager
             .getLaunchIntentForPackage(baseContext.packageName)
-            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).run {
-                startActivity(this)
+            ?.apply {
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
+        startActivity(intent)
     }
 }
