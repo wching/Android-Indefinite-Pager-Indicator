@@ -85,8 +85,8 @@ class ViewPager2SampleFragment : Fragment(), OnPagerNumberChangeListener, View.O
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
         _binding = null
         pagerAdapter = null
+        super.onDestroyView()
     }
 }
