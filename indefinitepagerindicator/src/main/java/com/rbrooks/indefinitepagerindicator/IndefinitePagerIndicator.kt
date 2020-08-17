@@ -255,10 +255,10 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     /**
      * Attach a RecyclerView to the Pager Indicator.
      *
-     * Any previously attached source will be detached.
+     * Any previously attached sources will be removed.
      */
     fun attachToRecyclerView(recyclerView: RecyclerView?) {
-        detachSources()
+        removeAllSources()
 
         this.recyclerView = recyclerView
 
@@ -271,10 +271,10 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     /**
      * Attach a ViewPager to the Pager Indicator.
      *
-     * Any previously attached source will be detached.
+     * Any previously attached sources will be removed.
      */
     fun attachToViewPager(viewPager: ViewPager?) {
-        detachSources()
+        removeAllSources()
 
         this.viewPager = viewPager
         this.viewPager?.addOnPageChangeListener(this)
@@ -285,10 +285,10 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     /**
      * Attach a ViewPager2 to the Pager Indicator.
      *
-     * Any previously attached source will be detached.
+     * Any previously attached sources will be removed.
      */
     fun attachToViewPager2(viewPager2: ViewPager2) {
-        detachSources()
+        removeAllSources()
 
         this.viewPager2 = viewPager2
 
@@ -300,7 +300,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         selectedItemPosition = this.viewPager2?.currentItem!!
     }
 
-    private fun detachSources() {
+    private fun removeAllSources() {
         internalRecyclerScrollListener?.let {
             recyclerView?.removeOnScrollListener(it)
         }
