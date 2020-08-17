@@ -1,30 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.github.dcendents.android-maven'
 
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'IndefinitePagerIndicator'
-
-    publishedGroupId = 'com.ryanjeffreybrooks'
-    libraryName = 'IndefinitePagerIndicator'
-    artifact = 'indefinitepagerindicator'
-
-    libraryDescription = 'A lightweight, plug-and-play indefinite pager indicator for RecyclerViews & ViewPagers.'
-
-    siteUrl = 'https://github.com/rbro112/Android-Indefinite-Pager-Indicator'
-    gitUrl = 'https://github.com/rbro112/Android-Indefinite-Pager-Indicator.git'
-
-    libraryVersion = '1.0.10'
-
-    developerId = 'rbro112'
-    developerName = 'Ryan Brooks'
-    developerEmail = 'ryanjeffrey.brooks112@gmail.com'
-
-    licenseName = 'MIT License'
-    licenseUrl = 'https://github.com/rbro112/Android-Indefinite-Pager-Indicator/blob/master/LICENSE.md'
-    allLicenses = ["MIT"]
-}
+group = 'com.ryanjeffreybrooks.androidpagerindicator'
 
 android {
     compileSdkVersion 26
@@ -58,6 +37,3 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
-
-apply from: '../gradle/bintray_installer.gradle'
-apply from: '../gradle/maven_installer.gradle'
