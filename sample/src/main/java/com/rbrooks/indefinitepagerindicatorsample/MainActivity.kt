@@ -3,21 +3,20 @@ package com.rbrooks.indefinitepagerindicatorsample
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import com.google.android.material.tabs.TabLayout
 import com.rbrooks.indefinitepagerindicatorsample.recyclerViewSample.RecyclerViewSampleFragment
+import com.rbrooks.indefinitepagerindicatorsample.rtlViewPagerSample.RTLViewPagerSampleFragment
 import com.rbrooks.indefinitepagerindicatorsample.util.OnPagerNumberChangeListener
 import com.rbrooks.indefinitepagerindicatorsample.util.PagerNumberPickerDialogPreference
-import com.rbrooks.indefinitepagerindicatorsample.viewPagerSample.RTLViewPagerSampleFragment
+import com.rbrooks.indefinitepagerindicatorsample.viewPager2Sample.ViewPager2SampleFragment
 import com.rbrooks.indefinitepagerindicatorsample.viewPagerSample.ViewPagerSampleFragment
-import kotlinx.android.synthetic.main.activity_main.toolbar
-
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener,
     OnPagerNumberChangeListener {
@@ -30,6 +29,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener,
     private lateinit var tabLayout: TabLayout
     private lateinit var fragmentLayout: FrameLayout
     private lateinit var viewPagerSampleFragment: ViewPagerSampleFragment
+    private lateinit var viewPager2SampleFragment: ViewPager2SampleFragment
     private lateinit var recyclerViewSampleFragment: RecyclerViewSampleFragment
     private lateinit var rtlViewPagerSampleFragment: RTLViewPagerSampleFragment
     private lateinit var sharedPreferences: SharedPreferences
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener,
 
         sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE)
 
-        setSupportActionBar(toolbar as Toolbar)
+        setSupportActionBar(toolbar)
         toolbar?.title = getString(R.string.main_activity_title)
         toolbar?.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
 
@@ -64,8 +64,8 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener,
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
             R.id.action_horizontal -> {
                 saveNewActionSelection(false)
                 restartApp()
@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener,
                 restartApp()
             }
             R.id.action_quantity_button -> {
-                PagerNumberPickerDialogPreference().show(fragmentManager, null)
+                PagerNumberPickerDialogPreference().show(supportFragmentManager, null)
             }
         }
         return super.onOptionsItemSelected(item)
@@ -89,8 +89,9 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener,
     override fun onTabSelected(tab: TabLayout.Tab?) {
         when (tab?.position) {
             0 -> setFragment(viewPagerSampleFragment)
-            1 -> setFragment(recyclerViewSampleFragment)
-            2 -> setFragment(rtlViewPagerSampleFragment)
+            1 -> setFragment(viewPager2SampleFragment)
+            2 -> setFragment(recyclerViewSampleFragment)
+            3 -> setFragment(rtlViewPagerSampleFragment)
         }
     }
 
@@ -100,6 +101,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener,
 
     override fun onPagerNumberChanged() {
         (viewPagerSampleFragment as OnPagerNumberChangeListener).onPagerNumberChanged()
+        (viewPager2SampleFragment as OnPagerNumberChangeListener).onPagerNumberChanged()
         (recyclerViewSampleFragment as OnPagerNumberChangeListener).onPagerNumberChanged()
         (rtlViewPagerSampleFragment as OnPagerNumberChangeListener).onPagerNumberChanged()
     }
@@ -118,6 +120,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener,
 
     private fun setupFragments() {
         viewPagerSampleFragment = ViewPagerSampleFragment()
+        viewPager2SampleFragment = ViewPager2SampleFragment()
         recyclerViewSampleFragment = RecyclerViewSampleFragment()
         rtlViewPagerSampleFragment = RTLViewPagerSampleFragment()
     }
@@ -136,10 +139,11 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener,
             ).commit()
 
     private fun restartApp() {
-        baseContext.packageManager
+        val intent = baseContext.packageManager
             .getLaunchIntentForPackage(baseContext.packageName)
-            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).run {
-                startActivity(this)
+            ?.apply {
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
+        startActivity(intent)
     }
 }

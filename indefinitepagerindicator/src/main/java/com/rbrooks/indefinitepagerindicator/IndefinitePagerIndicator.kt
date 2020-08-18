@@ -4,16 +4,17 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Paint
-import android.support.annotation.ColorInt
-import android.support.v4.content.ContextCompat
-import android.support.v4.view.ViewCompat
-import android.support.v4.view.ViewPager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.view.View
 import android.view.animation.DecelerateInterpolator
+import androidx.annotation.ColorInt
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 
 class IndefinitePagerIndicator @JvmOverloads constructor(
     context: Context,
@@ -27,6 +28,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         private const val DEFAULT_FADING_DOT_COUNT = 1
         private const val DEFAULT_DOT_RADIUS_DP = 4
         private const val DEFAULT_SELECTED_DOT_RADIUS_DP = 5.5f
+
         // Measured outside of first dot to outside of next dot: O<->O
         private const val DEFAULT_DOT_SEPARATION_DISTANCE_DP = 10
 
@@ -37,7 +39,9 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     private var recyclerView: RecyclerView? = null
     private var viewPager: ViewPager? = null
+    private var viewPager2: ViewPager2? = null
     private var internalRecyclerScrollListener: InternalRecyclerScrollListener? = null
+    private var internalPageChangeCallback: InternalPageChangeCallback? = null
     private val interpolator = DecelerateInterpolator()
 
     private var dotCount = DEFAULT_DOT_COUNT
@@ -51,6 +55,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     @ColorInt
     private var dotColor: Int = ContextCompat.getColor(this.context, R.color.default_dot_color)
+
     @ColorInt
     private var selectedDotColor: Int = ContextCompat.getColor(
         this.context,
@@ -109,7 +114,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
                 dotSeparationDistancePx
             )
             supportRtl =
-                    typedArray.getBoolean(R.styleable.IndefinitePagerIndicator_supportRTL, false)
+                typedArray.getBoolean(R.styleable.IndefinitePagerIndicator_supportRTL, false)
             verticalSupport = typedArray.getBoolean(
                 R.styleable.IndefinitePagerIndicator_verticalSupport,
                 false
@@ -248,31 +253,26 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     /**
      * Attach a RecyclerView to the Pager Indicator.
      *
-     * If ViewPager previously attached, remove this class (page change listener) and set to null.
-     * If other RecyclerView previously attached, remove internal scroll listener.
+     * Any previously attached sources will be removed.
      */
     fun attachToRecyclerView(recyclerView: RecyclerView?) {
-        viewPager?.removeOnPageChangeListener(this)
-        viewPager = null
-
-        this.recyclerView?.removeOnScrollListener(internalRecyclerScrollListener)
+        removeAllSources()
 
         this.recyclerView = recyclerView
-        internalRecyclerScrollListener = InternalRecyclerScrollListener()
-        this.recyclerView?.addOnScrollListener(internalRecyclerScrollListener)
+
+        InternalRecyclerScrollListener().let { newScrollListener ->
+            internalRecyclerScrollListener = newScrollListener
+            this.recyclerView?.addOnScrollListener(newScrollListener)
+        }
     }
 
     /**
      * Attach a ViewPager to the Pager Indicator.
      *
-     * If RecyclerView previously attached, scroll listener will be removed and RV set to null.
-     * If other ViewPager previously attached, remove reference to this class (page change listener).
+     * Any previously attached sources will be removed.
      */
     fun attachToViewPager(viewPager: ViewPager?) {
-        recyclerView?.removeOnScrollListener(internalRecyclerScrollListener)
-        recyclerView = null
-
-        this.viewPager?.removeOnPageChangeListener(this)
+        removeAllSources()
 
         this.viewPager = viewPager
         this.viewPager?.addOnPageChangeListener(this)
@@ -280,9 +280,44 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         selectedItemPosition = viewPager?.currentItem!!
     }
 
+    /**
+     * Attach a ViewPager2 to the Pager Indicator.
+     *
+     * Any previously attached sources will be removed.
+     */
+    fun attachToViewPager2(viewPager2: ViewPager2) {
+        removeAllSources()
+
+        this.viewPager2 = viewPager2
+
+        InternalPageChangeCallback().let {
+            internalPageChangeCallback = it
+            this.viewPager2?.registerOnPageChangeCallback(it)
+        }
+
+        selectedItemPosition = this.viewPager2?.currentItem!!
+    }
+
+    private fun removeAllSources() {
+        internalRecyclerScrollListener?.let {
+            recyclerView?.removeOnScrollListener(it)
+        }
+
+        this.viewPager?.removeOnPageChangeListener(this)
+
+        internalPageChangeCallback?.let {
+            viewPager2?.unregisterOnPageChangeCallback(it)
+        }
+
+        recyclerView = null
+        viewPager = null
+        viewPager2 = null
+    }
+
     private fun getPagerItemCount(): Int = when {
         recyclerView != null -> recyclerView?.adapter?.itemCount!!
         viewPager != null -> viewPager?.adapter?.count!!
+        viewPager2 != null -> viewPager2?.adapter?.itemCount!!
         else -> 0
     }
 
@@ -347,7 +382,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
          * Use this percentage to also calculate the offsetPercentage
          * used to scale dots.
          */
-        override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
 
             val view = getMostVisibleChild()
 
@@ -356,7 +391,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
                 offsetPercent = view.left.toFloat() / view.measuredWidth
             }
 
-            with(recyclerView?.layoutManager as LinearLayoutManager) {
+            with(recyclerView.layoutManager as LinearLayoutManager) {
                 val visibleItemPosition =
                     if (dx >= 0) findLastVisibleItemPosition() else findFirstVisibleItemPosition()
 
@@ -404,14 +439,25 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
             }
         }
 
-        private fun setIntermediateSelectedItemPosition(mostVisibleChild: View?) {
-            with(recyclerView?.findContainingViewHolder(mostVisibleChild)?.adapterPosition!!) {
+        private fun setIntermediateSelectedItemPosition(mostVisibleChild: View) {
+            recyclerView?.findContainingViewHolder(mostVisibleChild)?.adapterPosition?.let { position ->
                 intermediateSelectedItemPosition = if (isRtl() && !verticalSupport) {
-                    getRTLPosition(this)
+                    getRTLPosition(position)
                 } else {
-                    this
+                    position
                 }
             }
+        }
+    }
+
+    internal inner class InternalPageChangeCallback : ViewPager2.OnPageChangeCallback() {
+
+        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            this@IndefinitePagerIndicator.onPageScrolled(position, positionOffset, positionOffsetPixels)
+        }
+
+        override fun onPageSelected(position: Int) {
+            this@IndefinitePagerIndicator.onPageSelected(position)
         }
     }
 }
