@@ -11,6 +11,6 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v2
       - name: Run ktlint
-        run: ./gradlew ktlint
+        run: ./gradlew ktlintCheck
       - name: Build
         run: ./gradlew build
