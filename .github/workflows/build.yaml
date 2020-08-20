@@ -1,0 +1,16 @@
+name: Build
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+      - name: Run ktlint
+        run: ./gradlew ktlint
+      - name: Build
+        run: ./gradlew build
