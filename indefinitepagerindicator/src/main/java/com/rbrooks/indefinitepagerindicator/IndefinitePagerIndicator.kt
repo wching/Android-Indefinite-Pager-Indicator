@@ -35,7 +35,6 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
         private fun dpToPx(dp: Float, resources: Resources): Int =
             (dp * ((resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT).toFloat())).toInt()
-
     }
 
     private var recyclerView: RecyclerView? = null
