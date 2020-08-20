@@ -191,13 +191,12 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         }
     }
 
-
     /**
      * Gets the coordinate for a dot based on the position in the pager.
      */
     private fun getDotCoordinate(pagerPosition: Int): Float =
         (pagerPosition - intermediateSelectedItemPosition) * getDistanceBetweenTheCenterOfTwoDots() +
-                (getDistanceBetweenTheCenterOfTwoDots() * offsetPercent)
+            (getDistanceBetweenTheCenterOfTwoDots() * offsetPercent)
 
     /**
      * Get the y coordinate for a dot.
@@ -234,7 +233,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
             else -> {
                 // Determine how close the dot is to the edge of the view for scaling the size of the dot
                 val percentTowardsEdge = (coordinateAbs - largeDotThreshold) /
-                        (getCalculatedWidth() / 2.01f - largeDotThreshold)
+                    (getCalculatedWidth() / 2.01f - largeDotThreshold)
                 interpolator.getInterpolation(1 - percentTowardsEdge) * dotRadiusPx
             }
         }
@@ -469,8 +468,16 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     internal inner class InternalPageChangeCallback : ViewPager2.OnPageChangeCallback() {
 
-        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-            this@IndefinitePagerIndicator.onPageScrolled(position, positionOffset, positionOffsetPixels)
+        override fun onPageScrolled(
+            position: Int,
+            positionOffset: Float,
+            positionOffsetPixels: Int
+        ) {
+            this@IndefinitePagerIndicator.onPageScrolled(
+                position,
+                positionOffset,
+                positionOffsetPixels
+            )
         }
 
         override fun onPageSelected(position: Int) {
