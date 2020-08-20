@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
+import kotlin.math.abs
 
 class IndefinitePagerIndicator @JvmOverloads constructor(
     context: Context,
@@ -234,7 +235,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
      * All other dots will be the normal specified dot color.
      */
     private fun getPaint(coordinate: Float): Paint = when {
-        Math.abs(coordinate) < getDistanceBetweenTheCenterOfTwoDots() / 2 -> selectedDotPaint
+        abs(coordinate) < getDistanceBetweenTheCenterOfTwoDots() / 2 -> selectedDotPaint
         else -> dotPaint
     }
 
@@ -315,9 +316,9 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     }
 
     private fun getPagerItemCount(): Int = when {
-        recyclerView != null -> recyclerView?.adapter?.itemCount!!
-        viewPager != null -> viewPager?.adapter?.count!!
-        viewPager2 != null -> viewPager2?.adapter?.itemCount!!
+        recyclerView != null -> recyclerView?.adapter?.itemCount ?: 0
+        viewPager != null -> viewPager?.adapter?.count ?: 0
+        viewPager2 != null -> viewPager2?.adapter?.itemCount ?: 0
         else -> 0
     }
 
