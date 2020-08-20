@@ -105,7 +105,10 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
                 R.styleable.IndefinitePagerIndicator_selectedDotRadius,
                 selectedDotRadiusPx
             )
-            dotColor = typedArray.getColor(R.styleable.IndefinitePagerIndicator_dotColor, dotColor)
+            dotColor = typedArray.getColor(
+                R.styleable.IndefinitePagerIndicator_dotColor,
+                dotColor
+            )
             selectedDotColor = typedArray.getColor(
                 R.styleable.IndefinitePagerIndicator_selectedDotColor,
                 selectedDotColor
@@ -114,12 +117,15 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
                 R.styleable.IndefinitePagerIndicator_dotSeparation,
                 dotSeparationDistancePx
             )
-            supportRtl =
-                typedArray.getBoolean(R.styleable.IndefinitePagerIndicator_supportRTL, false)
+            supportRtl = typedArray.getBoolean(
+                R.styleable.IndefinitePagerIndicator_supportRTL,
+                false
+            )
             verticalSupport = typedArray.getBoolean(
                 R.styleable.IndefinitePagerIndicator_verticalSupport,
                 false
             )
+            typedArray.recycle()
         }
 
         selectedDotPaint.apply {
