@@ -13,4 +13,4 @@ jobs:
       - name: Run ktlint
         run: ./gradlew ktlintCheck
       - name: Build
-        run: ./gradlew build
+        run: sudo ./gradlew build
