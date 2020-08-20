@@ -47,10 +47,18 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     private var dotCount = DEFAULT_DOT_COUNT
     private var fadingDotCount = DEFAULT_FADING_DOT_COUNT
-    private var selectedDotRadiusPx = dpToPx(DEFAULT_SELECTED_DOT_RADIUS_DP, resources)
-    private var dotRadiusPx = dpToPx(DEFAULT_DOT_RADIUS_DP.toFloat(), resources)
-    private var dotSeparationDistancePx =
-        dpToPx(DEFAULT_DOT_SEPARATION_DISTANCE_DP.toFloat(), resources)
+    private var selectedDotRadiusPx = dpToPx(
+        dp = DEFAULT_SELECTED_DOT_RADIUS_DP,
+        resources = resources
+    )
+    private var dotRadiusPx = dpToPx(
+        dp = DEFAULT_DOT_RADIUS_DP.toFloat(),
+        resources = resources
+    )
+    private var dotSeparationDistancePx = dpToPx(
+        dp = DEFAULT_DOT_SEPARATION_DISTANCE_DP.toFloat(),
+        resources = resources
+    )
     private var supportRtl = false
     private var verticalSupport = false
 
@@ -152,7 +160,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         (0 until getPagerItemCount())
-            .map { getDotCoordinate(it) }
+            .map { getDotCoordinate(pagerPosition = it) }
             .forEach {
                 val xPosition: Float
                 val yPosition: Float
@@ -392,9 +400,10 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
 
             val view = getMostVisibleChild()
-
             if (view != null) {
-                setIntermediateSelectedItemPosition(view)
+                setIntermediateSelectedItemPosition(
+                    mostVisibleChild = view
+                )
                 offsetPercent = view.left.toFloat() / view.measuredWidth
             }
 
@@ -423,7 +432,9 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
             for (i in recyclerView?.layoutManager?.childCount!! - 1 downTo 0) {
                 val child = recyclerView?.layoutManager?.getChildAt(i)
                 if (child != null) {
-                    val percentVisible = calculatePercentVisible(child)
+                    val percentVisible = calculatePercentVisible(
+                        child = child
+                    )
                     if (percentVisible >= mostVisibleChildPercent) {
                         mostVisibleChildPercent = percentVisible
                         mostVisibleChild = child
