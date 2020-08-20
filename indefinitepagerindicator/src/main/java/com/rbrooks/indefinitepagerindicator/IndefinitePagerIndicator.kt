@@ -291,7 +291,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         this.viewPager = viewPager
         this.viewPager?.addOnPageChangeListener(this)
 
-        selectedItemPosition = viewPager?.currentItem!!
+        selectedItemPosition = viewPager?.currentItem ?: 0
     }
 
     /**
@@ -309,7 +309,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
             this.viewPager2?.registerOnPageChangeCallback(it)
         }
 
-        selectedItemPosition = this.viewPager2?.currentItem!!
+        selectedItemPosition = this.viewPager2?.currentItem ?: 0
     }
 
     private fun removeAllSources() {
