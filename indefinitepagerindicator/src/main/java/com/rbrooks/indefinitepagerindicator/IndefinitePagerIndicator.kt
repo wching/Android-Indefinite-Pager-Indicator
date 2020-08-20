@@ -212,9 +212,9 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     private fun getDistanceBetweenTheCenterOfTwoDots() = 2 * dotRadiusPx + dotSeparationDistancePx
 
     /**
-     * Calculates a dot's radius based on it's position.
+     * Calculates a dot radius based on its position.
      *
-     * If the position is within 1 dot's length, it's the currently selected dot.
+     * If the position is within 1 dot length, it's the currently selected dot.
      *
      * If the position is within a threshold (half the width of the number of non fading dots),
      * it is a normal sized dot.
