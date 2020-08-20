@@ -23,7 +23,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     defStyle: Int = 0
 ) : View(context, attrs, defStyle), ViewPager.OnPageChangeListener {
 
-    companion object {
+    private companion object {
 
         private const val DEFAULT_DOT_COUNT = 5
         private const val DEFAULT_FADING_DOT_COUNT = 1
