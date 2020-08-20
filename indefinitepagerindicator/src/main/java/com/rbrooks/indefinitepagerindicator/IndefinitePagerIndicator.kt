@@ -19,9 +19,8 @@ import kotlin.math.abs
 
 class IndefinitePagerIndicator @JvmOverloads constructor(
     context: Context,
-    attrs: AttributeSet? = null,
-    defStyle: Int = 0
-) : View(context, attrs, defStyle), ViewPager.OnPageChangeListener {
+    attrs: AttributeSet? = null
+) : View(context, attrs), ViewPager.OnPageChangeListener {
 
     private companion object {
 
