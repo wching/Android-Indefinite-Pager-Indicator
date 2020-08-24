@@ -23,6 +23,8 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     defStyle: Int = 0
 ) : View(context, attrs, defStyle), ViewPager.OnPageChangeListener {
 
+    // region Members
+
     private companion object {
 
         private const val DEFAULT_DOT_COUNT = 5
@@ -88,6 +90,10 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
      */
     private var offsetPercent: Float = 0f
 
+    // endregion
+
+    // region Constructor
+
     init {
         attrs?.let {
             val typedArray = context.theme.obtainStyledAttributes(
@@ -147,6 +153,9 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         }
     }
 
+    // endregion
+
+    // region View
     /**
      * Iterate over the total pager item count and draw every dot based on position.
      *
@@ -190,6 +199,62 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
             setMeasuredDimension(getCalculatedWidth(), minimumViewSize)
         }
     }
+
+    // endregion
+
+    // region Public Api
+
+    /**
+     * Attach a RecyclerView to the Pager Indicator.
+     *
+     * Any previously attached sources will be removed.
+     */
+    fun attachToRecyclerView(recyclerView: RecyclerView?) {
+        removeAllSources()
+
+        this.recyclerView = recyclerView
+
+        InternalRecyclerScrollListener().let { newScrollListener ->
+            internalRecyclerScrollListener = newScrollListener
+            this.recyclerView?.addOnScrollListener(newScrollListener)
+        }
+    }
+
+    /**
+     * Attach a ViewPager to the Pager Indicator.
+     *
+     * Any previously attached sources will be removed.
+     */
+    fun attachToViewPager(viewPager: ViewPager?) {
+        removeAllSources()
+
+        this.viewPager = viewPager
+        this.viewPager?.addOnPageChangeListener(this)
+
+        selectedItemPosition = viewPager?.currentItem ?: 0
+    }
+
+    /**
+     * Attach a ViewPager2 to the Pager Indicator.
+     *
+     * Any previously attached sources will be removed.
+     */
+    fun attachToViewPager2(viewPager2: ViewPager2) {
+        removeAllSources()
+
+        this.viewPager2 = viewPager2
+
+        InternalPageChangeCallback().let {
+            internalPageChangeCallback = it
+            this.viewPager2?.registerOnPageChangeCallback(it)
+        }
+
+        selectedItemPosition = this.viewPager2?.currentItem ?: 0
+    }
+
+    // endregion
+
+    // region Private Api
 
     /**
      * Gets the coordinate for a dot based on the position in the pager.
@@ -263,54 +328,6 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         return (maxNumVisibleDots - 1) * getDistanceBetweenTheCenterOfTwoDots() + 2 * dotRadiusPx
     }
 
-    /**
-     * Attach a RecyclerView to the Pager Indicator.
-     *
-     * Any previously attached sources will be removed.
-     */
-    fun attachToRecyclerView(recyclerView: RecyclerView?) {
-        removeAllSources()
-
-        this.recyclerView = recyclerView
-
-        InternalRecyclerScrollListener().let { newScrollListener ->
-            internalRecyclerScrollListener = newScrollListener
-            this.recyclerView?.addOnScrollListener(newScrollListener)
-        }
-    }
-
-    /**
-     * Attach a ViewPager to the Pager Indicator.
-     *
-     * Any previously attached sources will be removed.
-     */
-    fun attachToViewPager(viewPager: ViewPager?) {
-        removeAllSources()
-
-        this.viewPager = viewPager
-        this.viewPager?.addOnPageChangeListener(this)
-
-        selectedItemPosition = viewPager?.currentItem ?: 0
-    }
-
-    /**
-     * Attach a ViewPager2 to the Pager Indicator.
-     *
-     * Any previously attached sources will be removed.
-     */
-    fun attachToViewPager2(viewPager2: ViewPager2) {
-        removeAllSources()
-
-        this.viewPager2 = viewPager2
-
-        InternalPageChangeCallback().let {
-            internalPageChangeCallback = it
-            this.viewPager2?.registerOnPageChangeCallback(it)
-        }
-
-        selectedItemPosition = this.viewPager2?.currentItem ?: 0
-    }
-
     private fun removeAllSources() {
         internalRecyclerScrollListener?.let {
             recyclerView?.removeOnScrollListener(it)
@@ -334,22 +351,14 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         else -> 0
     }
 
-    /**
-     * Checks if the View is in RTL direction
-     */
     private fun isRtl() = ViewCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_RTL
 
-    /**
-     * Gets the RTL position of the position in any adapter
-     */
     private fun getRTLPosition(position: Int) = getPagerItemCount() - position - 1
 
-    /**
-     * ViewPager.OnPageChangeListener implementation.
-     *
-     * Used to update the intermediateSelectedPosition & offsetPercent when the page is scrolled.
-     * OffsetPercent multiplied by -1 to account for natural swipe movement.
-     */
+    // endregion
+
+    // region Listeners
+
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
         if (supportRtl && isRtl()) {
             intermediateSelectedItemPosition = getRTLPosition(position)
@@ -375,9 +384,6 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         // Not implemented
     }
 
-    /**
-     * Internal scroll listener to handle the scaling/fading/selected dot states for a RecyclerView.
-     */
     internal inner class InternalRecyclerScrollListener : RecyclerView.OnScrollListener() {
 
         /**
@@ -484,4 +490,6 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
             this@IndefinitePagerIndicator.onPageSelected(position)
         }
     }
+
+    // endregion
 }
