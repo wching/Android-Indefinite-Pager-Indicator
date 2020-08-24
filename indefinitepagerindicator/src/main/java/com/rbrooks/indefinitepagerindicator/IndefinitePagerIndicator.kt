@@ -34,9 +34,6 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
         // Measured outside of first dot to outside of next dot: O<->O
         private const val DEFAULT_DOT_SEPARATION_DISTANCE_DP = 10
-
-        private fun dpToPx(dp: Float, resources: Resources): Int =
-            (dp * ((resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT).toFloat())).toInt()
     }
 
     private var recyclerView: RecyclerView? = null
@@ -312,6 +309,8 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         val maxNumVisibleDots = dotCount + 2 * fadingDotCount
         return (maxNumVisibleDots - 1) * getDistanceBetweenTheCenterOfTwoDots() + 2 * dotRadiusPx
     }
+
+    private fun dpToPx(dp: Float): Int = (dp * ((resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT).toFloat())).toInt()
 
     private fun removeAllSources() {
         internalRecyclerScrollListener?.let {
