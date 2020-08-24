@@ -64,8 +64,8 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         context,
         R.color.default_selected_dot_color
     )
-    private var selectedDotPaint = Paint()
-    private var dotPaint = Paint()
+    private var selectedDotPaint: Paint
+    private var dotPaint: Paint
 
     /**
      * The current pager position. Used to draw the selected dot if different size/color.
