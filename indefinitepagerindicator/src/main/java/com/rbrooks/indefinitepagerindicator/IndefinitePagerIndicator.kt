@@ -229,36 +229,43 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     fun setDotCount(count: Int) {
         dotCount = count
+        invalidate()
     }
 
     fun setFadingDotCount(count: Int) {
         fadingDotCount = count
+        invalidate()
     }
 
     fun setSelectedDotRadius(radius: Int) {
         selectedDotRadiusPx = dpToPx(
             dp = radius.toFloat()
         )
+        invalidate()
     }
 
     fun setDotRadius(radius: Int) {
         dotRadiusPx = dpToPx(
             dp = radius.toFloat()
         )
+        invalidate()
     }
 
     fun setDotSeparationDistance(distance: Int) {
         dotSeparationDistancePx = dpToPx(
             dp = distance.toFloat()
         )
+        invalidate()
     }
 
     fun setRTLSupport(supportRTL: Boolean) {
         supportRtl = supportRTL
+        invalidate()
     }
 
     fun setVerticalSupport(verticalSupport: Boolean) {
         this.verticalSupport = verticalSupport
+        invalidate()
     }
 
     fun setDotColor(@ColorInt newDotColor: Int) {
