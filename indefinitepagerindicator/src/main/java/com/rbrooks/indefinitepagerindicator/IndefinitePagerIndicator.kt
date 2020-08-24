@@ -61,11 +61,14 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     private var verticalSupport = false
 
     @ColorInt
-    private var dotColor: Int = ContextCompat.getColor(this.context, R.color.default_dot_color)
+    private var dotColor: Int = ContextCompat.getColor(
+        context,
+        R.color.default_dot_color
+    )
 
     @ColorInt
     private var selectedDotColor: Int = ContextCompat.getColor(
-        this.context,
+        context,
         R.color.default_selected_dot_color
     )
     private var selectedDotPaint = Paint()
