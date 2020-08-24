@@ -46,16 +46,13 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     private var dotCount = DEFAULT_DOT_COUNT
     private var fadingDotCount = DEFAULT_FADING_DOT_COUNT
     private var selectedDotRadiusPx = dpToPx(
-        dp = DEFAULT_SELECTED_DOT_RADIUS_DP,
-        resources = resources
+        dp = DEFAULT_SELECTED_DOT_RADIUS_DP
     )
     private var dotRadiusPx = dpToPx(
-        dp = DEFAULT_DOT_RADIUS_DP.toFloat(),
-        resources = resources
+        dp = DEFAULT_DOT_RADIUS_DP
     )
     private var dotSeparationDistancePx = dpToPx(
-        dp = DEFAULT_DOT_SEPARATION_DISTANCE_DP.toFloat(),
-        resources = resources
+        dp = DEFAULT_DOT_SEPARATION_DISTANCE_DP
     )
     private var supportRtl = false
     private var verticalSupport = false
