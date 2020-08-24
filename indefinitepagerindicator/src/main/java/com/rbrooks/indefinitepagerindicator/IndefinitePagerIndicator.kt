@@ -264,28 +264,16 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         this.verticalSupport = verticalSupport
     }
 
-    fun setDotColor(colorId: Int) {
-        dotColor = ContextCompat.getColor(
-            context,
-            colorId
-        )
-        dotPaint = Paint().apply {
-            style = Paint.Style.FILL
-            color = dotColor
-            isAntiAlias = true
-        }
+    fun setDotColor(@ColorInt newDotColor: Int) {
+        dotColor = newDotColor
+        dotPaint.color = dotColor
+        invalidate()
     }
 
-    fun setSelectedDotColor(colorId: Int) {
-        selectedDotColor = ContextCompat.getColor(
-            context,
-            colorId
-        )
-        selectedDotPaint = Paint().apply {
-            style = Paint.Style.FILL
-            color = selectedDotColor
-            isAntiAlias = true
-        }
+    fun setSelectedDotColor(@ColorInt newSelectedDotColor: Int) {
+        selectedDotColor = newSelectedDotColor
+        selectedDotPaint.color = selectedDotColor
+        invalidate()
     }
 
     // endregion
