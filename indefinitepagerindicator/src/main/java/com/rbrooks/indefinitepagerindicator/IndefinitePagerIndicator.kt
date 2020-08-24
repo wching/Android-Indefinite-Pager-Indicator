@@ -146,15 +146,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     // endregion
 
     // region View
-    /**
-     * Iterate over the total pager item count and draw every dot based on position.
-     *
-     * Helper methods - getDotCoordinate(Int) & getRadius(Int)
-     * will return values outside the calculated width or with an invalid radius
-     * if the dot is not to be drawn.
-     *
-     * TODO: "Instagram style" drawing where all dots are drawn at once.
-     */
+
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         (0 until getPagerItemCount())
@@ -174,10 +166,6 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     }
 
     /**
-     * Set the dimensions of the IndefinitePagerIndicator.
-     * Width/Height is calculated below with getCalculatedWidth().
-     * Width/Height is simply the diameter of the largest circle.
-     *
      * TODO: Add support for padding.
      * TODO: Add support for MATCH_PARENT
      */
