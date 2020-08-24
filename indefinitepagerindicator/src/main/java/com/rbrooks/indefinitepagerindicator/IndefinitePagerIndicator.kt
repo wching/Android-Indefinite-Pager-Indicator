@@ -134,16 +134,13 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
             typedArray.recycle()
         }
 
-        selectedDotPaint.apply {
-            style = Paint.Style.FILL
-            color = selectedDotColor
-            isAntiAlias = true
-        }
-        dotPaint.apply {
-            style = Paint.Style.FILL
-            color = dotColor
-            isAntiAlias = true
-        }
+        selectedDotPaint = getDefaultPaintConfig(
+            defaultColor = selectedDotColor
+        )
+
+        dotPaint = getDefaultPaintConfig(
+            defaultColor = dotColor
+        )
     }
 
     // endregion
