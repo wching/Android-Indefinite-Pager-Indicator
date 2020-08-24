@@ -204,11 +204,6 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     // region Public Api
 
-    /**
-     * Attach a RecyclerView to the Pager Indicator.
-     *
-     * Any previously attached sources will be removed.
-     */
     fun attachToRecyclerView(recyclerView: RecyclerView?) {
         removeAllSources()
 
@@ -220,11 +215,6 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         }
     }
 
-    /**
-     * Attach a ViewPager to the Pager Indicator.
-     *
-     * Any previously attached sources will be removed.
-     */
     fun attachToViewPager(viewPager: ViewPager?) {
         removeAllSources()
 
@@ -234,11 +224,6 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         selectedItemPosition = viewPager?.currentItem ?: 0
     }
 
-    /**
-     * Attach a ViewPager2 to the Pager Indicator.
-     *
-     * Any previously attached sources will be removed.
-     */
     fun attachToViewPager2(viewPager2: ViewPager2) {
         removeAllSources()
 
