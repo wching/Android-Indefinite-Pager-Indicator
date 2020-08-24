@@ -230,6 +230,64 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         selectedItemPosition = this.viewPager2?.currentItem ?: 0
     }
 
+    fun setDotCount(count: Int) {
+        dotCount = count
+    }
+
+    fun setFadingDotCount(count: Int) {
+        fadingDotCount = count
+    }
+
+    fun setSelectedDotRadius(radius: Int) {
+        selectedDotRadiusPx = dpToPx(
+            dp = radius.toFloat()
+        )
+    }
+
+    fun setDotRadius(radius: Int) {
+        dotRadiusPx = dpToPx(
+            dp = radius.toFloat()
+        )
+    }
+
+    fun setDotSeparationDistance(distance: Int) {
+        dotSeparationDistancePx = dpToPx(
+            dp = distance.toFloat()
+        )
+    }
+
+    fun setRTLSupport(supportRTL: Boolean) {
+        supportRtl = supportRTL
+    }
+
+    fun setVerticalSupport(verticalSupport: Boolean) {
+        this.verticalSupport = verticalSupport
+    }
+
+    fun setDotColor(colorId: Int) {
+        dotColor = ContextCompat.getColor(
+            context,
+            colorId
+        )
+        dotPaint = Paint().apply {
+            style = Paint.Style.FILL
+            color = dotColor
+            isAntiAlias = true
+        }
+    }
+
+    fun setSelectedDotColor(colorId: Int) {
+        selectedDotColor = ContextCompat.getColor(
+            context,
+            colorId
+        )
+        selectedDotPaint = Paint().apply {
+            style = Paint.Style.FILL
+            color = selectedDotColor
+            isAntiAlias = true
+        }
+    }
+
     // endregion
 
     // region Private Api
