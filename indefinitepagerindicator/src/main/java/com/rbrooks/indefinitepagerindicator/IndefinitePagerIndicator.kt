@@ -376,7 +376,8 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         return (maxNumVisibleDots - 1) * getDistanceBetweenTheCenterOfTwoDots() + 2 * dotRadiusPx
     }
 
-    private fun dpToPx(dp: Float): Int = (dp * ((resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT).toFloat())).toInt()
+    private fun dpToPx(dp: Float): Int =
+        (dp * ((resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT).toFloat())).toInt()
 
     private fun removeAllSources() {
         internalRecyclerScrollListener?.let {
