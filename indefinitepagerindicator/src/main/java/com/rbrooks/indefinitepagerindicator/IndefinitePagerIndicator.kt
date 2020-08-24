@@ -292,11 +292,31 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     // region Private Api
 
-    /**
-     * Gets the coordinate for a dot based on the position in the pager.
-     */
-    private fun getDotCoordinate(pagerPosition: Int): Float =
-        (pagerPosition - intermediateSelectedItemPosition) * getDistanceBetweenTheCenterOfTwoDots() +
+    private fun getDefaultPaintConfig(
+        defaultStyle: Paint.Style = Paint.Style.FILL,
+        isAntiAliasDefault: Boolean = true,
+        @ColorInt defaultColor: Int
+    ): Paint = Paint().apply {
+        style = defaultStyle
+        isAntiAlias = isAntiAliasDefault
+        color = defaultColor
+    }
+
+    private fun getXYPositionsByCoordinate(coordinate: Float): Pair<Float, Float> {
+        val xPosition: Float
+        val yPosition: Float
+        if (verticalSupport) {
+            xPosition = getDotYCoordinate().toFloat()
+            yPosition = height / 2 + coordinate
+        } else {
+            xPosition = width / 2 + coordinate
+            yPosition = getDotYCoordinate().toFloat()
+        }
+        return Pair(xPosition, yPosition)
+    }
+
+    private fun getDotCoordinate(position: Int): Float =
+        (position - intermediateSelectedItemPosition) * getDistanceBetweenTheCenterOfTwoDots() +
             (getDistanceBetweenTheCenterOfTwoDots() * offsetPercent)
 
     /**
