@@ -149,19 +149,22 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        (0 until getPagerItemCount())
-            .map { getDotCoordinate(pagerPosition = it) }
-            .forEach {
-                val xPosition: Float
-                val yPosition: Float
-                if (verticalSupport) {
-                    xPosition = getDotYCoordinate().toFloat()
-                    yPosition = height / 2 + it
-                } else {
-                    xPosition = width / 2 + it
-                    yPosition = getDotYCoordinate().toFloat()
-                }
-                canvas.drawCircle(xPosition, yPosition, getRadius(it), getPaint(it))
+        (0 until getItemCount())
+            .map { position ->
+                getDotCoordinate(
+                    position = position
+                )
+            }
+            .forEach { coordinate ->
+                val (xPosition: Float, yPosition: Float) = getXYPositionsByCoordinate(
+                    coordinate = coordinate
+                )
+                canvas.drawCircle(
+                    xPosition,
+                    yPosition,
+                    getRadius(coordinate = coordinate),
+                    getPaint(coordinate = coordinate)
+                )
             }
     }
 
