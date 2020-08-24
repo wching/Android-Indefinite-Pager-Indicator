@@ -402,7 +402,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         viewPager2 = null
     }
 
-    private fun getPagerItemCount(): Int = when {
+    private fun getItemCount(): Int = when {
         recyclerView != null -> recyclerView?.adapter?.itemCount ?: 0
         viewPager != null -> viewPager?.adapter?.count ?: 0
         viewPager2 != null -> viewPager2?.adapter?.itemCount ?: 0
@@ -411,7 +411,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     private fun isRtl() = ViewCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_RTL
 
-    private fun getRTLPosition(position: Int) = getPagerItemCount() - position - 1
+    private fun getRTLPosition(position: Int) = getItemCount() - position - 1
 
     // endregion
 
