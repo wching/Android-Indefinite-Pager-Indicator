@@ -45,10 +45,10 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         dp = DEFAULT_SELECTED_DOT_RADIUS_DP
     )
     private var dotRadiusPx = dpToPx(
-        dp = DEFAULT_DOT_RADIUS_DP
+        dp = DEFAULT_DOT_RADIUS_DP.toFloat()
     )
     private var dotSeparationDistancePx = dpToPx(
-        dp = DEFAULT_DOT_SEPARATION_DISTANCE_DP
+        dp = DEFAULT_DOT_SEPARATION_DISTANCE_DP.toFloat()
     )
     private var supportRtl = false
     private var verticalSupport = false
