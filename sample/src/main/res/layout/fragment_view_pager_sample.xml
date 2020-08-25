@@ -5,6 +5,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:text="The horizontal indicator below has the properties setup programmatically :)"/>
+
     <com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
         android:id="@+id/viewpager_pager_indicator"
         android:layout_width="wrap_content"
