@@ -25,7 +25,11 @@ class ViewPagerSampleFragment : Fragment(), OnPagerNumberChangeListener, View.On
     private var pagerAdapter: ViewPagerAdapter? = null
     private var isVerticalEnabled = false
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_view_pager_sample, container, false)
 
         isVerticalEnabled = requireContext().getSharedPreferences(
@@ -53,12 +57,21 @@ class ViewPagerSampleFragment : Fragment(), OnPagerNumberChangeListener, View.On
     private fun setupViews() {
         pagerAdapter = ViewPagerAdapter(requireContext())
         viewPager.adapter = pagerAdapter
-        pagerIndicator.setDotColor(
-            newDotColor = ContextCompat.getColor(requireContext(), R.color.colorCrazy)
-        )
-        pagerIndicator.setSelectedDotColor(
-            newSelectedDotColor = ContextCompat.getColor(requireContext(), R.color.colorCrazyHappy)
-        )
+        pagerIndicator.apply {
+            setDotColor(
+                newDotColor = ContextCompat.getColor(requireContext(), R.color.colorCrazy)
+            )
+            setSelectedDotColor(
+                newSelectedDotColor = ContextCompat.getColor(
+                    requireContext(),
+                    R.color.colorCrazyHappy
+                )
+            )
+            setDotSeparationDistance(distance = 50)
+            setDotRadius(radius = 10)
+            setSelectedDotRadius(radius = 15)
+            setFadingDotCount(2)
+        }
 
         if (isVerticalEnabled) {
             verticalPagerIndicator.attachToViewPager(viewPager)
