@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
@@ -24,7 +25,11 @@ class ViewPagerSampleFragment : Fragment(), OnPagerNumberChangeListener, View.On
     private var pagerAdapter: ViewPagerAdapter? = null
     private var isVerticalEnabled = false
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_view_pager_sample, container, false)
 
         isVerticalEnabled = requireContext().getSharedPreferences(
@@ -52,6 +57,22 @@ class ViewPagerSampleFragment : Fragment(), OnPagerNumberChangeListener, View.On
     private fun setupViews() {
         pagerAdapter = ViewPagerAdapter(requireContext())
         viewPager.adapter = pagerAdapter
+        pagerIndicator.apply {
+            setDotColor(
+                newDotColor = ContextCompat.getColor(requireContext(), R.color.colorCrazy)
+            )
+            setSelectedDotColor(
+                newSelectedDotColor = ContextCompat.getColor(
+                    requireContext(),
+                    R.color.colorCrazyHappy
+                )
+            )
+            setDotSeparationDistance(distance = 50)
+            setDotRadius(radius = 10)
+            setSelectedDotRadius(radius = 15)
+            setFadingDotCount(2)
+        }
+
         if (isVerticalEnabled) {
             verticalPagerIndicator.attachToViewPager(viewPager)
             verticalPagerIndicator.visibility = View.VISIBLE
