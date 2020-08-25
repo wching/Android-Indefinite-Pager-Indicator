@@ -403,11 +403,14 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
         if (supportRtl && isRtl()) {
-            intermediateSelectedItemPosition = getRTLPosition(
+            val currentPosition = getRTLPosition(
                 position = position
             )
+            selectedItemPosition = currentPosition
+            intermediateSelectedItemPosition = currentPosition
             offsetPercent = positionOffset * 1
         } else {
+            selectedItemPosition = position
             intermediateSelectedItemPosition = position
             offsetPercent = positionOffset * -1
         }
