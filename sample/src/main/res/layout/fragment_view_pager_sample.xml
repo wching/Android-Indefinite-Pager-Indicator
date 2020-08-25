@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
-        android:text="The horizontal indicator below has the properties setup programmatically :)"/>
+        android:text="Programmatically setup indicator"/>
 
     <com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
         android:id="@+id/viewpager_pager_indicator"
