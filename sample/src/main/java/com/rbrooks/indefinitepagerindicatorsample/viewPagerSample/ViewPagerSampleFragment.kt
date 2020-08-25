@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
@@ -52,6 +53,13 @@ class ViewPagerSampleFragment : Fragment(), OnPagerNumberChangeListener, View.On
     private fun setupViews() {
         pagerAdapter = ViewPagerAdapter(requireContext())
         viewPager.adapter = pagerAdapter
+        pagerIndicator.setDotColor(
+            newDotColor = ContextCompat.getColor(requireContext(), R.color.colorCrazy)
+        )
+        pagerIndicator.setSelectedDotColor(
+            newSelectedDotColor = ContextCompat.getColor(requireContext(), R.color.colorCrazyHappy)
+        )
+
         if (isVerticalEnabled) {
             verticalPagerIndicator.attachToViewPager(viewPager)
             verticalPagerIndicator.visibility = View.VISIBLE
