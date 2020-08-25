@@ -403,7 +403,9 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
         if (supportRtl && isRtl()) {
-            intermediateSelectedItemPosition = getRTLPosition(position)
+            intermediateSelectedItemPosition = getRTLPosition(
+                position = position
+            )
             offsetPercent = positionOffset * 1
         } else {
             intermediateSelectedItemPosition = position
@@ -415,7 +417,9 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     override fun onPageSelected(position: Int) {
         intermediateSelectedItemPosition = selectedItemPosition
         selectedItemPosition = if (supportRtl && isRtl()) {
-            getRTLPosition(position)
+            getRTLPosition(
+                position = position
+            )
         } else {
             position
         }
@@ -506,7 +510,9 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         private fun setIntermediateSelectedItemPosition(mostVisibleChild: View) {
             recyclerView?.findContainingViewHolder(mostVisibleChild)?.adapterPosition?.let { position ->
                 intermediateSelectedItemPosition = if (isRtl() && !verticalSupport) {
-                    getRTLPosition(position)
+                    getRTLPosition(
+                        position = position
+                    )
                 } else {
                     position
                 }
