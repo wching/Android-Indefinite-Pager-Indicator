@@ -108,7 +108,7 @@ git clone git@github.com:rbro112/Android-Indefinite-Pager-Indicator.git
 
 ## Customizing
 
-To customize the IndefinitePagerIndicator, modify any of the following attributes in the XML code for your IndefinitePagerIndicator view.
+To customize the IndefinitePagerIndicator, modify any of the following attributes in the XML code (or set them programmatically) for your IndefinitePagerIndicator view.
 
 | Attribute             | Explanation                                               | Default Value | Example Code                     |  Result  |
 |-----------------------|-----------------------------------------------------------|---------------|----------------------------------|:--------:|
