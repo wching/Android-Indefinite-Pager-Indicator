@@ -7,12 +7,11 @@ A lightweight, plug-and-play indefinite pager indicator for RecyclerViews &amp; 
 # Usage
 
 ![Release](https://jitpack.io/v/rbro112/Android-Indefinite-Pager-Indicator.svg)
-(https://jitpack.io/#rbro112/Android-Indefinite-Pager-Indicator) 
 
+
+## Important Information
  
- ## Important Information
- 
- From now on, all the new updates will be published in [jitpack.io](https://jitpack.io/#rbro112/Android-Indefinite-Pager-Indicator).
+From now on, all the new updates will be published in [jitpack.io](https://jitpack.io/#rbro112/Android-Indefinite-Pager-Indicator).
 
 To use the IndefinitePagerIndicator, simply add the gradle dependency to your module's `build.gradle` file:
 
@@ -20,11 +19,21 @@ To use the IndefinitePagerIndicator, simply add the gradle dependency to your mo
 implementation 'com.github.rbro112:Android-Indefinite-Pager-Indicator:Tag'
 ```
 
+or 
+
+```groovy
+implementation 'com.github.wching:Android-Indefinite-Pager-Indicator:Tag'
+```
+
+both of them work 😃
+
+
 Min SDK supported is version 16 - Jelly Bean.
 
 ## Getting Started
 
-Attaching the indicator to a RecyclerView or Viewpager takes only one line of code. After this, the Indefinite Pager Indicator will handle everything else.
+Attaching the indicator to a RecyclerView / Viewpager / Viewpager2 takes only one line of code. 
+After this, the Indefinite Pager Indicator will handle everything else.
 
 ### RecyclerView
 
@@ -103,30 +112,32 @@ To customize the IndefinitePagerIndicator, modify any of the following attribute
 
 | Attribute             | Explanation                                               | Default Value | Example Code                     |  Result  |
 |-----------------------|-----------------------------------------------------------|---------------|----------------------------------|:--------:|
-| dotRadius             | The radius of a dot indicator in DP.                      | 4dp           | `app:dotRadius="8dp"`            |     ![Alt text](/readme_assets/dot_radius_sample.png "dotRadius")     |
-| selectedDotRadius     | The radius of the currently selected dot indicator in DP. | 5.5dp         | `app:selectedDotRadius="6dp"`    |     ![Alt text](/readme_assets/selected_dot_radius_sample.png "selectedDotRadius")     |
-| dotColor              | The color of a dot indicator.                             | #e8e8e8       | `app:dotColor="#ff0000"`         |     ![Alt text](/readme_assets/dot_color_sample.png "dotColor")     |
-| selectedDotColor      | The color of the currently selected dot indicator.        | #ffffff       | `app:selectedDotColor="#ff0000"` |     ![Alt text](/readme_assets/selected_dot_color_sample.png "selectedDotColor")     |
-| dotSeparation         | The distance from edge to edge of each dot in DP.         | 10dp          | `app:dotSeparation="16dp"`       |     ![Alt text](/readme_assets/dot_separation_sample.png "dotSeparation")     |
-| dotCount              | The number of large visible dot indicators at any time.   | 5             | `app:dotCount="3"`               |     ![Alt text](/readme_assets/dot_count_sample.png "dotCount")     |
-| fadingDotCount        | The number of dot indicators that fade towards the edge.  | 1             | `app:fadingDotCount="2"`         |     ![Alt text](/readme_assets/fading_dot_count_sample.png "fadingDotCount")     |
-| supportRTL            | Adds support for RTL ViewPagers (Thanks @wching!)         | false         | `app:supportRTL="true"`          |     If current layout mode is RTL, indicator will move from right to left with scrolling. |
+| dotRadius             | The radius of a dot indicator in DP.                      | 4dp           | `indefinite_pager_indicator:dotRadius="8dp"`            |     ![Alt text](/readme_assets/dot_radius_sample.png "dotRadius")     |
+| selectedDotRadius     | The radius of the currently selected dot indicator in DP. | 5.5dp         | `indefinite_pager_indicator:selectedDotRadius="6dp"`    |     ![Alt text](/readme_assets/selected_dot_radius_sample.png "selectedDotRadius")     |
+| dotColor              | The color of a dot indicator.                             | #e8e8e8       | `indefinite_pager_indicator:dotColor="#ff0000"`         |     ![Alt text](/readme_assets/dot_color_sample.png "dotColor")     |
+| selectedDotColor      | The color of the currently selected dot indicator.        | #ffffff       | `indefinite_pager_indicator:selectedDotColor="#ff0000"` |     ![Alt text](/readme_assets/selected_dot_color_sample.png "selectedDotColor")     |
+| dotSeparation         | The distance from edge to edge of each dot in DP.         | 10dp          | `indefinite_pager_indicator:dotSeparation="16dp"`       |     ![Alt text](/readme_assets/dot_separation_sample.png "dotSeparation")     |
+| dotCount              | The number of large visible dot indicators at any time.   | 5             | `indefinite_pager_indicator:dotCount="3"`               |     ![Alt text](/readme_assets/dot_count_sample.png "dotCount")     |
+| fadingDotCount        | The number of dot indicators that fade towards the edge.  | 1             | `indefinite_pager_indicator:fadingDotCount="2"`         |     ![Alt text](/readme_assets/fading_dot_count_sample.png "fadingDotCount")     |
+| supportRTL            | Adds support for RTL ViewPagers         | false         | `indefinite_pager_indicator:supportRTL="true"`          |     If current layout mode is RTL, indicator will move from right to left with scrolling. |
+| verticalSupport       | Adds support for a vertical setup         | false         | `indefinite_pager_indicator::verticalSupport="true"`          |  ![](https://cldup.com/37xl-LPeNw.png)    |
 
-## TODO:
 
-Actively working on these. If you would like to help, submit a PR!
+If you would like to help, submit a PR! We have the following features pending: 
 
 - "Instagram" style -- Selected dot starts at the left of the view rather than starting in the center.
 
 - Support for padding.
 
+- Support for small drawables.
+
 ## Notes
 
-Follow me on Twitter: [@rbro112](https://twitter.com/rbro112)
+Follow us on Twitter: [@rbro112](https://twitter.com/rbro112) [@wchingb](https://twitter.com/@wchingb)
 
-Let me know what you think: [ryanjeffrey.brooks112@gmail.com](mailto:ryanjeffrey.brooks112@gmail.com)
+Let us know what you think!
 
-Contributions welcome!
+Contributions encouraged and welcome!
 
 ## License
 ```
