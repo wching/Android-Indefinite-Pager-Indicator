@@ -11,8 +11,6 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="24dp"
-        indefinite_pager_indicator:dotColor="@color/colorPrimaryDark"
-        indefinite_pager_indicator:selectedDotColor="@color/colorPrimary"
         tools:background="@color/cardview_dark_background"/>
 
     <androidx.viewpager.widget.ViewPager
