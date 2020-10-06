@@ -25,6 +25,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     // region Members
 
     private companion object {
+        private const val DEFAULT_MAX_DOT_COUNT = 0
         private const val DEFAULT_DOT_COUNT = 5
         private const val DEFAULT_FADING_DOT_COUNT = 1
         private const val DEFAULT_DOT_RADIUS_DP = 4
@@ -39,6 +40,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     private var internalPageChangeCallback: InternalPageChangeCallback? = null
     private val interpolator = DecelerateInterpolator()
 
+    private var maxDotCount = DEFAULT_MAX_DOT_COUNT
     private var dotCount = DEFAULT_DOT_COUNT
     private var fadingDotCount = DEFAULT_FADING_DOT_COUNT
     private var selectedDotRadiusPx = dpToPx(
@@ -94,6 +96,10 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
                 R.styleable.IndefinitePagerIndicator,
                 0,
                 0
+            )
+            maxDotCount = typedArray.getInteger(
+                R.styleable.IndefinitePagerIndicator_maxDotCount,
+                DEFAULT_MAX_DOT_COUNT
             )
             dotCount = typedArray.getInteger(
                 R.styleable.IndefinitePagerIndicator_dotCount,
@@ -220,6 +226,11 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     fun setDotCount(count: Int) {
         dotCount = count
+        invalidate()
+    }
+
+    fun setMaxDotCount(count: Int) {
+        maxDotCount = count
         invalidate()
     }
 
@@ -387,6 +398,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     }
 
     private fun getItemCount(): Int = when {
+        maxDotCount > 0 -> maxDotCount
         recyclerView != null -> recyclerView?.adapter?.itemCount ?: 0
         viewPager != null -> viewPager?.adapter?.count ?: 0
         viewPager2 != null -> viewPager2?.adapter?.itemCount ?: 0
