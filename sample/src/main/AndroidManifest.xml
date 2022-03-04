@@ -11,6 +11,7 @@
 
         <activity
             android:name="com.rbrooks.indefinitepagerindicatorsample.MainActivity"
+            android:exported="true"
             android:theme="@style/NoActionBarActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
