@@ -29,6 +29,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         private const val DEFAULT_FADING_DOT_COUNT = 1
         private const val DEFAULT_DOT_RADIUS_DP = 4
         private const val DEFAULT_SELECTED_DOT_RADIUS_DP = 5.5f
+        private const val DEFAULT_SELECTED__STROKE_DOT_RADIUS_DP = 7.5f
         private const val DEFAULT_DOT_SEPARATION_DISTANCE_DP = 10
     }
 
@@ -44,6 +45,9 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     private var selectedDotRadiusPx = dpToPx(
         dp = DEFAULT_SELECTED_DOT_RADIUS_DP
     )
+    private var selectedStrokeDotRadiusPx = dpToPx(
+        dp = DEFAULT_SELECTED__STROKE_DOT_RADIUS_DP
+    )
     private var dotRadiusPx = dpToPx(
         dp = DEFAULT_DOT_RADIUS_DP.toFloat()
     )
@@ -52,6 +56,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     )
     private var supportRtl = false
     private var verticalSupport = false
+    private var isStrokeDot = false
 
     @ColorInt
     private var dotColor: Int = ContextCompat.getColor(
@@ -64,7 +69,15 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         context,
         R.color.default_selected_dot_color
     )
+
+    @ColorInt
+    private var selectedStrokeDotColor: Int = ContextCompat.getColor(
+        context,
+        R.color.default_selected_stroke_dot_color
+    )
+
     private var selectedDotPaint: Paint
+    private var selectedStrokeDotPaint: Paint
     private var dotPaint: Paint
 
     /**
@@ -131,11 +144,30 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
                 R.styleable.IndefinitePagerIndicator_verticalSupport,
                 false
             )
+            isStrokeDot =
+                typedArray.getBoolean(
+                    R.styleable.IndefinitePagerIndicator_isSelectedStroke,
+                    false
+                )
+            selectedStrokeDotColor = typedArray.getColor(
+                R.styleable.IndefinitePagerIndicator_selectedStrokeDotColor,
+                selectedStrokeDotColor
+            )
+            selectedStrokeDotRadiusPx = typedArray.getDimensionPixelSize(
+                R.styleable.IndefinitePagerIndicator_selectedStokeDotRadius,
+                selectedStrokeDotRadiusPx
+            )
+
             typedArray.recycle()
         }
 
         selectedDotPaint = getDefaultPaintConfig(
             defaultColor = selectedDotColor
+        )
+
+        selectedStrokeDotPaint = getDefaultPaintConfig(
+            defaultColor = selectedStrokeDotColor,
+            defaultStyle = Paint.Style.STROKE
         )
 
         dotPaint = getDefaultPaintConfig(
@@ -159,12 +191,15 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
                 val (xPosition: Float, yPosition: Float) = getXYPositionsByCoordinate(
                     coordinate = coordinate
                 )
-                canvas.drawCircle(
-                    xPosition,
-                    yPosition,
-                    getRadius(coordinate = coordinate),
-                    getPaint(coordinate = coordinate)
-                )
+                getRadius(coordinate = coordinate).zip(getPaint(coordinate = coordinate)) { radius, paint ->
+                    canvas.drawCircle(
+                        xPosition,
+                        yPosition,
+                        radius,
+                        paint
+                    )
+                }
+
             }
     }
 
@@ -173,7 +208,11 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
      * TODO: Add support for MATCH_PARENT
      */
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val minimumViewSize = 2 * selectedDotRadiusPx
+        val minimumViewSize = if (isStrokeDot) {
+            selectedStrokeDotRadiusPx * 3
+        } else {
+            selectedDotRadiusPx * 2
+        }
         if (verticalSupport) {
             setMeasuredDimension(minimumViewSize, getCalculatedWidth())
         } else {
@@ -271,6 +310,16 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         invalidate()
     }
 
+    fun setSelectedStrokeDotColor(@ColorInt newSelectedStrokeDotColor: Int) {
+        selectedStrokeDotColor = newSelectedStrokeDotColor
+        selectedDotPaint.color = selectedStrokeDotColor
+        invalidate()
+    }
+
+    fun setStrokeDot(isStroke: Boolean) {
+        isStrokeDot = isStroke
+    }
+
     // endregion
 
     // region Private Api
@@ -283,6 +332,8 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         style = defaultStyle
         isAntiAlias = isAntiAliasDefault
         color = defaultColor
+        isAntiAlias = true
+        strokeWidth = 4F
     }
 
     private fun getXYPositionsByCoordinate(coordinate: Float): Pair<Float, Float> {
@@ -300,7 +351,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     private fun getDotCoordinate(position: Int): Float =
         (position - intermediateSelectedItemPosition) * getDistanceBetweenTheCenterOfTwoDots() +
-            (getDistanceBetweenTheCenterOfTwoDots() * offsetPercent)
+                (getDistanceBetweenTheCenterOfTwoDots() * offsetPercent)
 
     /**
      * Get the y coordinate for a dot.
@@ -308,7 +359,11 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
      * The bottom of the view is y = 0 and a dot is drawn from the center, so therefore
      * the y coordinate is simply the radius.
      */
-    private fun getDotYCoordinate(): Int = selectedDotRadiusPx
+    private fun getDotYCoordinate(): Int = if (isStrokeDot) {
+        selectedStrokeDotRadiusPx + 10
+    } else {
+        selectedDotRadiusPx
+    }
 
     /**
      * Calculates the distance between 2 dots center.
@@ -327,18 +382,23 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
      * radius is calculated based on a interpolator percentage of how far the
      * viewpager/recyclerview has scrolled.
      */
-    private fun getRadius(coordinate: Float): Float {
+    private fun getRadius(coordinate: Float): List<Float> {
         val coordinateAbs = abs(coordinate)
         // Get the coordinate where dots begin showing as fading dots (x coordinates > half of width of all large dots)
         val largeDotThreshold = dotCount.toFloat() / 2 * getDistanceBetweenTheCenterOfTwoDots()
         return when {
-            coordinateAbs < getDistanceBetweenTheCenterOfTwoDots() / 2 -> selectedDotRadiusPx.toFloat()
-            coordinateAbs <= largeDotThreshold -> dotRadiusPx.toFloat()
+            coordinateAbs < getDistanceBetweenTheCenterOfTwoDots() / 2 -> if (isStrokeDot) {
+                listOf(dotRadiusPx.toFloat(), selectedStrokeDotRadiusPx.toFloat())
+            } else {
+                listOf(selectedDotRadiusPx.toFloat())
+            }
+            coordinateAbs <= largeDotThreshold -> listOf(dotRadiusPx.toFloat())
             else -> {
                 // Determine how close the dot is to the edge of the view for scaling the size of the dot
                 val percentTowardsEdge = (coordinateAbs - largeDotThreshold) /
-                    (getCalculatedWidth() / 2.01f - largeDotThreshold)
+                        (getCalculatedWidth() / 2.01f - largeDotThreshold)
                 interpolator.getInterpolation(1 - percentTowardsEdge) * dotRadiusPx
+                listOf(percentTowardsEdge)
             }
         }
     }
@@ -350,9 +410,16 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
      *
      * All other dots will be the normal specified dot color.
      */
-    private fun getPaint(coordinate: Float): Paint = when {
-        abs(coordinate) < getDistanceBetweenTheCenterOfTwoDots() / 2 -> selectedDotPaint
-        else -> dotPaint
+    private fun getPaint(coordinate: Float): List<Paint> = when {
+        abs(coordinate) < getDistanceBetweenTheCenterOfTwoDots() / 2
+        -> if (isStrokeDot) {
+            listOf(selectedDotPaint, selectedStrokeDotPaint)
+        } else {
+            listOf(selectedDotPaint)
+        }
+        else -> {
+            listOf(dotPaint)
+        }
     }
 
     /**

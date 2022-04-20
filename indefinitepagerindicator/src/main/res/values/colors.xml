@@ -2,4 +2,5 @@
 <resources>
     <color name="default_selected_dot_color">#ffffff</color>
     <color name="default_dot_color">#e8e8e8</color>
+    <color name="default_selected_stroke_dot_color">#AFCD46</color>
 </resources>
