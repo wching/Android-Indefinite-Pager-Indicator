@@ -10,5 +10,8 @@
         <attr name="dotSeparation" format="dimension" />
         <attr name="supportRTL" format="boolean" />
         <attr name="verticalSupport" format="boolean" />
+        <attr name="isSelectedStroke" format="boolean"/>
+        <attr name="selectedStrokeDotColor" format="color"/>
+        <attr name="selectedStokeDotRadius" format="dimension"/>
     </declare-styleable>
 </resources>
