@@ -397,8 +397,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
                 // Determine how close the dot is to the edge of the view for scaling the size of the dot
                 val percentTowardsEdge = (coordinateAbs - largeDotThreshold) /
                         (getCalculatedWidth() / 2.01f - largeDotThreshold)
-                interpolator.getInterpolation(1 - percentTowardsEdge) * dotRadiusPx
-                listOf(percentTowardsEdge)
+                listOf(interpolator.getInterpolation(1 - percentTowardsEdge) * dotRadiusPx)
             }
         }
     }
