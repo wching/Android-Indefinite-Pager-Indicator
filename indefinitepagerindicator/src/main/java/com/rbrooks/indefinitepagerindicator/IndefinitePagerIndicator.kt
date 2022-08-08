@@ -1,8 +1,10 @@
 package com.rbrooks.indefinitepagerindicator
 
+import android.annotation.TargetApi
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.os.Build
 import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.view.View
@@ -16,21 +18,25 @@ import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import kotlin.math.abs
 
-class IndefinitePagerIndicator @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyle: Int = 0
-) : View(context, attrs, defStyle), ViewPager.OnPageChangeListener {
+
+class IndefinitePagerIndicator : View, ViewPager.OnPageChangeListener {
+
+    constructor(context: Context?) : super(context)
+
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+        init(attrs ?: return)
+    }
+
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        init(attrs ?: return, defStyleAttr)
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {
+        init(attrs ?: return, defStyleAttr, defStyleRes)
+    }
 
     // region Members
-
-    private companion object {
-        private const val DEFAULT_DOT_COUNT = 5
-        private const val DEFAULT_FADING_DOT_COUNT = 1
-        private const val DEFAULT_DOT_RADIUS_DP = 4
-        private const val DEFAULT_SELECTED_DOT_RADIUS_DP = 5.5f
-        private const val DEFAULT_DOT_SEPARATION_DISTANCE_DP = 10
-    }
 
     private var recyclerView: RecyclerView? = null
     private var viewPager: ViewPager? = null
@@ -64,8 +70,10 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         context,
         R.color.default_selected_dot_color
     )
-    private var selectedDotPaint: Paint
-    private var dotPaint: Paint
+
+    private var selectedDotPaint: Paint? = null
+
+    private var dotPaint: Paint? = null
 
     /**
      * The current pager position. Used to draw the selected dot if different size/color.
@@ -87,50 +95,30 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     // region Constructor
 
-    init {
-        attrs?.let {
-            val typedArray = context.theme.obtainStyledAttributes(
-                attrs,
-                R.styleable.IndefinitePagerIndicator,
-                0,
-                0
-            )
-            dotCount = typedArray.getInteger(
-                R.styleable.IndefinitePagerIndicator_dotCount,
-                DEFAULT_DOT_COUNT
-            )
-            fadingDotCount = typedArray.getInt(
-                R.styleable.IndefinitePagerIndicator_fadingDotCount,
-                DEFAULT_FADING_DOT_COUNT
-            )
-            dotRadiusPx = typedArray.getDimensionPixelSize(
-                R.styleable.IndefinitePagerIndicator_dotRadius,
-                dotRadiusPx
-            )
-            selectedDotRadiusPx = typedArray.getDimensionPixelSize(
-                R.styleable.IndefinitePagerIndicator_selectedDotRadius,
-                selectedDotRadiusPx
-            )
-            dotColor = typedArray.getColor(
-                R.styleable.IndefinitePagerIndicator_dotColor,
-                dotColor
-            )
-            selectedDotColor = typedArray.getColor(
-                R.styleable.IndefinitePagerIndicator_selectedDotColor,
-                selectedDotColor
-            )
-            dotSeparationDistancePx = typedArray.getDimensionPixelSize(
-                R.styleable.IndefinitePagerIndicator_dotSeparation,
-                dotSeparationDistancePx
-            )
-            supportRtl = typedArray.getBoolean(
-                R.styleable.IndefinitePagerIndicator_supportRTL,
-                false
-            )
-            verticalSupport = typedArray.getBoolean(
-                R.styleable.IndefinitePagerIndicator_verticalSupport,
-                false
-            )
+    private fun init(attrs: AttributeSet, defStyleAttr: Int = 0, defStyleRes: Int = 0) {
+
+        val typedArray = context.theme.obtainStyledAttributes(
+            attrs,
+            R.styleable.IndefinitePagerIndicator,
+            defStyleAttr,
+            defStyleRes
+        )
+        try {
+            with(typedArray) {
+                dotCount = getInteger(R.styleable.IndefinitePagerIndicator_dotCount, DEFAULT_DOT_COUNT)
+                fadingDotCount = getInt(R.styleable.IndefinitePagerIndicator_fadingDotCount, DEFAULT_FADING_DOT_COUNT)
+                dotRadiusPx = getDimensionPixelSize(R.styleable.IndefinitePagerIndicator_dotRadius, dotRadiusPx)
+                selectedDotRadiusPx = getDimensionPixelSize(R.styleable.IndefinitePagerIndicator_selectedDotRadius, selectedDotRadiusPx)
+                dotColor = getColor(R.styleable.IndefinitePagerIndicator_dotColor, dotColor)
+                selectedDotColor = getColor(R.styleable.IndefinitePagerIndicator_selectedDotColor, selectedDotColor)
+                dotSeparationDistancePx = getDimensionPixelSize(R.styleable.IndefinitePagerIndicator_dotSeparation, dotSeparationDistancePx)
+                supportRtl = getBoolean(R.styleable.IndefinitePagerIndicator_supportRTL, false)
+                verticalSupport = getBoolean(R.styleable.IndefinitePagerIndicator_verticalSupport, false)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            // don't forget to recycle typed attributes
             typedArray.recycle()
         }
 
@@ -143,9 +131,10 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         )
     }
 
-    // endregion
 
-    // region View
+// endregion
+
+// region View
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -181,9 +170,9 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         }
     }
 
-    // endregion
+// endregion
 
-    // region Public Api
+// region Public Api
 
     fun attachToRecyclerView(recyclerView: RecyclerView?) {
         removeAllSources()
@@ -215,7 +204,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
             this.viewPager2?.registerOnPageChangeCallback(it)
         }
 
-        selectedItemPosition = this.viewPager2?.currentItem ?: 0
+        selectedItemPosition = viewPager2.currentItem
     }
 
     fun setDotCount(count: Int) {
@@ -228,24 +217,18 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         invalidate()
     }
 
-    fun setSelectedDotRadius(radius: Int) {
-        selectedDotRadiusPx = dpToPx(
-            dp = radius.toFloat()
-        )
+    fun setSelectedDotRadius(radius: Float) {
+        selectedDotRadiusPx = dpToPx(dp = radius)
         invalidate()
     }
 
-    fun setDotRadius(radius: Int) {
-        dotRadiusPx = dpToPx(
-            dp = radius.toFloat()
-        )
+    fun setDotRadius(radius: Float) {
+        dotRadiusPx = dpToPx(dp = radius)
         invalidate()
     }
 
-    fun setDotSeparationDistance(distance: Int) {
-        dotSeparationDistancePx = dpToPx(
-            dp = distance.toFloat()
-        )
+    fun setDotSeparationDistance(distance: Float) {
+        dotSeparationDistancePx = dpToPx(dp = distance)
         invalidate()
     }
 
@@ -261,19 +244,19 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     fun setDotColor(@ColorInt newDotColor: Int) {
         dotColor = newDotColor
-        dotPaint.color = dotColor
+        dotPaint?.color = dotColor
         invalidate()
     }
 
     fun setSelectedDotColor(@ColorInt newSelectedDotColor: Int) {
         selectedDotColor = newSelectedDotColor
-        selectedDotPaint.color = selectedDotColor
+        selectedDotPaint?.color = selectedDotColor
         invalidate()
     }
 
-    // endregion
+// endregion
 
-    // region Private Api
+// region Private Api
 
     private fun getDefaultPaintConfig(
         defaultStyle: Paint.Style = Paint.Style.FILL,
@@ -300,7 +283,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     private fun getDotCoordinate(position: Int): Float =
         (position - intermediateSelectedItemPosition) * getDistanceBetweenTheCenterOfTwoDots() +
-            (getDistanceBetweenTheCenterOfTwoDots() * offsetPercent)
+                (getDistanceBetweenTheCenterOfTwoDots() * offsetPercent)
 
     /**
      * Get the y coordinate for a dot.
@@ -337,7 +320,7 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
             else -> {
                 // Determine how close the dot is to the edge of the view for scaling the size of the dot
                 val percentTowardsEdge = (coordinateAbs - largeDotThreshold) /
-                    (getCalculatedWidth() / 2.01f - largeDotThreshold)
+                        (getCalculatedWidth() / 2.01f - largeDotThreshold)
                 interpolator.getInterpolation(1 - percentTowardsEdge) * dotRadiusPx
             }
         }
@@ -351,8 +334,12 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
      * All other dots will be the normal specified dot color.
      */
     private fun getPaint(coordinate: Float): Paint = when {
-        abs(coordinate) < getDistanceBetweenTheCenterOfTwoDots() / 2 -> selectedDotPaint
-        else -> dotPaint
+        abs(coordinate) < getDistanceBetweenTheCenterOfTwoDots() / 2 -> selectedDotPaint ?: getDefaultPaintConfig(
+            defaultColor = selectedDotColor
+        )
+        else -> dotPaint ?: getDefaultPaintConfig(
+            defaultColor = dotColor
+        )
     }
 
     /**
@@ -397,9 +384,9 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
     private fun getRTLPosition(position: Int) = getItemCount() - position - 1
 
-    // endregion
+// endregion
 
-    // region Listeners
+// region Listeners
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
         if (supportRtl && isRtl()) {
@@ -482,7 +469,10 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         private fun getMostVisibleChild(): View? {
             var mostVisibleChild: View? = null
             var mostVisibleChildPercent = 0f
-            for (i in recyclerView?.layoutManager?.childCount!! - 1 downTo 0) {
+
+            val childCount = recyclerView?.layoutManager?.childCount ?: return null
+
+            for (i in childCount - 1 downTo 0) {
                 val child = recyclerView?.layoutManager?.getChildAt(i)
                 if (child != null) {
                     val percentVisible = calculatePercentVisible(
@@ -511,7 +501,9 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         }
 
         private fun setIntermediateSelectedItemPosition(mostVisibleChild: View) {
-            recyclerView?.findContainingViewHolder(mostVisibleChild)?.bindingAdapterPosition
+            recyclerView
+                ?.findContainingViewHolder(mostVisibleChild)
+                ?.bindingAdapterPosition
                 ?.let { position ->
                     intermediateSelectedItemPosition = if (isRtl() && !verticalSupport) {
                         getRTLPosition(
@@ -543,5 +535,13 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         }
     }
 
-    // endregion
+// endregion
+
+    private companion object {
+        private const val DEFAULT_DOT_COUNT = 5
+        private const val DEFAULT_FADING_DOT_COUNT = 1
+        private const val DEFAULT_DOT_RADIUS_DP = 4
+        private const val DEFAULT_SELECTED_DOT_RADIUS_DP = 5.5f
+        private const val DEFAULT_DOT_SEPARATION_DISTANCE_DP = 10
+    }
 }
