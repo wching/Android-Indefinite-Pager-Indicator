@@ -67,9 +67,9 @@ class ViewPagerSampleFragment : Fragment(), OnPagerNumberChangeListener, View.On
                     R.color.colorCrazyHappy
                 )
             )
-            setDotSeparationDistance(distance = 50)
-            setDotRadius(radius = 10)
-            setSelectedDotRadius(radius = 15)
+            setDotSeparationDistance(distance = 50f)
+            setDotRadius(radius = 10f)
+            setSelectedDotRadius(radius = 15f)
             setFadingDotCount(2)
         }
 
