@@ -83,6 +83,11 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
      */
     private var offsetPercent: Float = 0f
 
+    /**
+     * Special mode when dots initial position is centered
+     */
+    private var isCentered: Boolean = false
+
     // endregion
 
     // region Constructor
@@ -131,6 +136,10 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
                 R.styleable.IndefinitePagerIndicator_verticalSupport,
                 false
             )
+            isCentered = typedArray.getBoolean(
+                R.styleable.IndefinitePagerIndicator_isCentered,
+                false
+            )
             typedArray.recycle()
         }
 
@@ -150,20 +159,14 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         (0 until getItemCount())
-            .map { position ->
-                getDotCoordinate(
-                    position = position
-                )
-            }
-            .forEach { coordinate ->
-                val (xPosition: Float, yPosition: Float) = getXYPositionsByCoordinate(
-                    coordinate = coordinate
-                )
+            .forEach { position ->
+                val coordinate = getDotCoordinate(position)
+                val (xPosition: Float, yPosition: Float) = getXYPositionsByCoordinate(coordinate)
                 canvas.drawCircle(
                     xPosition,
                     yPosition,
                     getRadius(coordinate = coordinate),
-                    getPaint(coordinate = coordinate)
+                    getPaint(coordinate = coordinate, position)
                 )
             }
     }
@@ -292,15 +295,30 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
             xPosition = getDotYCoordinate().toFloat()
             yPosition = height / 2 + coordinate
         } else {
-            xPosition = width / 2 + coordinate
+            xPosition = if (isCentered) {
+                dotRadiusPx + coordinate
+            } else {
+                width / 2 + coordinate
+            }
             yPosition = getDotYCoordinate().toFloat()
         }
         return Pair(xPosition, yPosition)
     }
 
-    private fun getDotCoordinate(position: Int): Float =
-        (position - intermediateSelectedItemPosition) * getDistanceBetweenTheCenterOfTwoDots() +
-            (getDistanceBetweenTheCenterOfTwoDots() * offsetPercent)
+    private fun getDotCoordinate(position: Int): Float {
+        return if (isCentered) {
+            if (intermediateSelectedItemPosition >= dotCount / 2) {
+                (dotCount / 2 + position - intermediateSelectedItemPosition) * getDistanceBetweenTheCenterOfTwoDots() +
+                        (getDistanceBetweenTheCenterOfTwoDots() * offsetPercent)
+            } else {
+                (position) * getDistanceBetweenTheCenterOfTwoDots() +
+                        (getDistanceBetweenTheCenterOfTwoDots() * offsetPercent)
+            }
+        } else {
+            (position - intermediateSelectedItemPosition) * getDistanceBetweenTheCenterOfTwoDots() +
+                    (getDistanceBetweenTheCenterOfTwoDots() * offsetPercent)
+        }
+    }
 
     /**
      * Get the y coordinate for a dot.
@@ -328,17 +346,24 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
      * viewpager/recyclerview has scrolled.
      */
     private fun getRadius(coordinate: Float): Float {
-        val coordinateAbs = abs(coordinate)
-        // Get the coordinate where dots begin showing as fading dots (x coordinates > half of width of all large dots)
-        val largeDotThreshold = dotCount.toFloat() / 2 * getDistanceBetweenTheCenterOfTwoDots()
-        return when {
-            coordinateAbs < getDistanceBetweenTheCenterOfTwoDots() / 2 -> selectedDotRadiusPx.toFloat()
-            coordinateAbs <= largeDotThreshold -> dotRadiusPx.toFloat()
-            else -> {
-                // Determine how close the dot is to the edge of the view for scaling the size of the dot
-                val percentTowardsEdge = (coordinateAbs - largeDotThreshold) /
-                    (getCalculatedWidth() / 2.01f - largeDotThreshold)
-                interpolator.getInterpolation(1 - percentTowardsEdge) * dotRadiusPx
+        return if (!isCentered) {
+            val coordinateAbs = abs(coordinate)
+            // Get the coordinate where dots begin showing as fading dots (x coordinates > half of width of all large dots)
+            val largeDotThreshold = dotCount.toFloat() / 2 * getDistanceBetweenTheCenterOfTwoDots()
+             when {
+                coordinateAbs < getDistanceBetweenTheCenterOfTwoDots() / 2 -> selectedDotRadiusPx.toFloat()
+                coordinateAbs <= largeDotThreshold -> dotRadiusPx.toFloat()
+                else -> {
+                    // Determine how close the dot is to the edge of the view for scaling the size of the dot
+                    val percentTowardsEdge = (coordinateAbs - largeDotThreshold) /
+                            (getCalculatedWidth() / 2.01f - largeDotThreshold)
+                    interpolator.getInterpolation(1 - percentTowardsEdge) * dotRadiusPx
+                }
+            }
+        } else {
+            when {
+                abs(coordinate) < getDistanceBetweenTheCenterOfTwoDots() / 2 -> selectedDotRadiusPx.toFloat()
+                else -> dotRadiusPx.toFloat()
             }
         }
     }
@@ -350,9 +375,18 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
      *
      * All other dots will be the normal specified dot color.
      */
-    private fun getPaint(coordinate: Float): Paint = when {
-        abs(coordinate) < getDistanceBetweenTheCenterOfTwoDots() / 2 -> selectedDotPaint
-        else -> dotPaint
+    private fun getPaint(coordinate: Float, position: Int): Paint {
+        return if (!isCentered) {
+            when {
+                abs(coordinate) < getDistanceBetweenTheCenterOfTwoDots() / 2 -> selectedDotPaint
+                else -> dotPaint
+            }
+        } else {
+            when {
+                position == selectedItemPosition || position == intermediateSelectedItemPosition -> selectedDotPaint
+                else -> dotPaint
+            }
+        }
     }
 
     /**
@@ -412,7 +446,15 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
         } else {
             selectedItemPosition = position
             intermediateSelectedItemPosition = position
-            offsetPercent = positionOffset * -1
+            if (!isCentered) {
+                offsetPercent = positionOffset * -1
+            } else {
+                if (position < dotCount / 2) {
+                    offsetPercent = 0f
+                } else {
+                    offsetPercent = positionOffset * -1
+                }
+            }
         }
         invalidate()
     }
@@ -457,7 +499,9 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
                 setIntermediateSelectedItemPosition(
                     mostVisibleChild = view
                 )
-                offsetPercent = view.left.toFloat() / view.measuredWidth
+                if (!isCentered) {
+                    offsetPercent = view.left.toFloat() / view.measuredWidth
+                }
             }
 
             with(recyclerView.layoutManager as LinearLayoutManager) {
@@ -466,6 +510,14 @@ class IndefinitePagerIndicator @JvmOverloads constructor(
 
                 if (previousMostVisibleChild !== findViewByPosition(visibleItemPosition)) {
                     selectedItemPosition = intermediateSelectedItemPosition
+                }
+            }
+
+            if (isCentered) {
+                if (view != null && selectedItemPosition >= dotCount / 2) {
+                    offsetPercent = view.left.toFloat() / view.measuredWidth
+                } else if (view != null) {
+                    offsetPercent = 0f
                 }
             }
 
